@@ -10,7 +10,6 @@ Coming soon!
 
 - [Usage](#Usage)
 - [Team](#Team)
-- [Questions](#Questions)
 - [License](#License)
 
 ## Usage
