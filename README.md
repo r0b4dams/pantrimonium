@@ -21,7 +21,7 @@ Coming soon!
 
  - Robert Adams: [comatosino](https://github.com/comatosino)
 
- - Angelica Villar Cereceres: [Angelica Villar Cereceres](https://github.com/angelicavc7)
+ - Angelica Villar Cereceres: [angelicavc7](https://github.com/angelicavc7)
 
  - Rick Rocero: [rickrocero](https://github.com/rickrocero)
 
