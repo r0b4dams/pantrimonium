@@ -14,6 +14,7 @@ Recipe_List.init(
     // Store a reference of the `id` of the `section` the item is going in 
     section_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
           model: 'user',
           key: 'id',

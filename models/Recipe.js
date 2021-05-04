@@ -22,6 +22,7 @@ Recipe.init(
     // Store a reference of the `id` of the `recipe list` the recipe is going in 
     recipe_list_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
           model: 'recipe_list',
           key: 'id',

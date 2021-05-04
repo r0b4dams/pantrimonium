@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-// const sequelize = require('../config/connection');
+const sequelize = require('../config/connection');
 
 class Inventory extends Model {}
 
@@ -18,6 +18,7 @@ Inventory.init(
     // Store a reference of the `id` of the `user` the inventory belongs to
     user_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
           model: 'user',
           key: 'id',
