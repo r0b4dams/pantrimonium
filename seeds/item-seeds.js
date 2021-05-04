@@ -201,6 +201,6 @@ const itemData = [
     },
 ]
 
-const seedItem = () => Item.bulkCreate(itemData);
+const seedItems = () => Item.bulkCreate(itemData);
 
-module.exports = seedItem;
+module.exports = seedItems;

@@ -51,6 +51,6 @@ const sectionData = [
     },
 ]
 
-const seedSection = () => Section.bulkCreate(sectionData);
+const seedSections = () => Section.bulkCreate(sectionData);
 
-module.exports = seedSection;
+module.exports = seedSections;
