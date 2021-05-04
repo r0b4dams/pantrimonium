@@ -1,0 +1,12 @@
+body {
+    font-family: papyrus;
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+    background-color: #ffcc57;"
+}
+
+.runningLow {
+    display: flex;
+    justify-content: space-between;
+  }

@@ -18,6 +18,7 @@ Section.init(
     // Store a reference of the `id` of the `inventory` the section is going in 
     inventory_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
           model: 'inventory',
           key: 'id',
