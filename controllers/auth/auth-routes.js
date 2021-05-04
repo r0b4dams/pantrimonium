@@ -3,8 +3,9 @@ const bcrypt = require("bcrypt"); // pw hashing
 const User = require('../../models/User');
 
 // localhost:3001/auth/
-router.get("/", (req, res)=>{
-    res.send("AUTH ROUTE");
+router.get("/session", (req, res)=>{
+    console.log(req.session.user);
+    res.json(req.session.user);
 })
 
 // a new user signs up
