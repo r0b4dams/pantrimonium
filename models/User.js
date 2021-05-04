@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 const { Model, DataTypes } = require('sequelize'); 
 const sequelize = require('../config/connection'); // db connection
 const bcrypt = require("bcrypt");                  // password hashing
-=======
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
->>>>>>> develop
 
 class User extends Model {}
 
@@ -25,12 +20,6 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-<<<<<<< HEAD
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-=======
       validate: {
         isEmail: true,
       },
@@ -48,7 +37,6 @@ User.init(
       validate: {
         len: [8],
       },
->>>>>>> develop
     },
   },
   {
