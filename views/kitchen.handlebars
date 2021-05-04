@@ -47,6 +47,19 @@
                 <span>Exp: 5d</span>
                 <button type="button" class="btn btn-success btn-sm">Add</button>
               </div>
+
+              {{#each items as |item|}}
+                {{#if exp_date}}
+                {{/if}}
+                <div style="background-color: #ff9a4a;" class="row rounded my-2 runningLow w-100 mx-auto p-1">
+                  <span>{{name}}</span>
+                  <span>{{quantity}} {{unit_of_measurement}}</span>
+                  <span>{{type}}</span>
+                  <span>Exp: {{exp_date}}</span>
+                  <button type="button" class="btn btn-success btn-sm">Add</button>
+                </div>
+
+              {{/each}}
               </h6>
 
             </div>
