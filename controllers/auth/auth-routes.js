@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const bcrypt = require("bcrypt"); // pw hashing
 const User = require('../../models/User');
+const Section = require('../../models/Section');
 
 // FOR TESTING
 // localhost:3001/auth/session
@@ -11,18 +12,32 @@ router.get("/session", (req, res)=>{
 
 // a new user signs up
 // localhost:3001/auth/signup
-router.post("/signup", (req, res)=>{
+router.post("/signup", async (req, res)=>{
 
-    console.log("new user created: ", req.body);
+    await User.create(req.body).then(newUser=>{
 
-    // create a new user from client data
-    // req.body = {
-    //     username: *username form input
-    //     email: *email form input
-    //     password: *password form input
-    // }
-    User.create(req.body).then(newUser=>{
-        res.json(newUser);           // send back the newUser data
+        // create seed array to bulk create default sections
+        defaultSections = [
+            {
+                name: `${newUser.dataValues.username}'s Fridge`,
+                user_id: newUser.dataValues.id
+            },
+            {
+                name: `${newUser.dataValues.username}'s Freezer`,
+                user_id: newUser.dataValues.id
+            },
+            {
+                name: `${newUser.dataValues.username}'s Pantry`,
+                user_id: newUser.dataValues.id
+            },
+        ];
+
+        // creates default sections
+        Section.bulkCreate(defaultSections).then(result=> {
+            console.log("defaults created!");
+        });
+
+        res.status(200).json(newUser);
 
     }).catch(err=>{
         console.log(err);
