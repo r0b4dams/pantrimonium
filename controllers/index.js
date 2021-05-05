@@ -21,7 +21,7 @@ router.get('/kitchen', async (req,res) => {
         const sectionData = await Section.findAll({
             where: {
                 // user_id: req.session.user.id
-                user_id: 1
+                user_id: req.session.user.id
             }
         })
         // console.log(sectionData);
