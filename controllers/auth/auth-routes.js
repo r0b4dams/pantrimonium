@@ -2,7 +2,8 @@ const router = require('express').Router();
 const bcrypt = require("bcrypt"); // pw hashing
 const User = require('../../models/User');
 
-// localhost:3001/auth/
+// FOR TESTING
+// localhost:3001/auth/session
 router.get("/session", (req, res)=>{
     console.log(req.session.user);
     res.json(req.session.user);
@@ -11,14 +12,16 @@ router.get("/session", (req, res)=>{
 // a new user signs up
 // localhost:3001/auth/signup
 router.post("/signup", (req, res)=>{
-    
-    // create a new user from client data
-    User.create({
-        username: req.body.username,
-        email: req.body.email, 
-        password: req.body.password, // hook in User.js hashes pw before create
 
-    }).then(newUser=>{
+    console.log("new user created: ", req.body);
+
+    // create a new user from client data
+    // req.body = {
+    //     username: *username form input
+    //     email: *email form input
+    //     password: *password form input
+    // }
+    User.create(req.body).then(newUser=>{
         res.json(newUser);           // send back the newUser data
 
     }).catch(err=>{
@@ -79,18 +82,6 @@ router.post("/login", (req,res)=>{
 router.get("/logout", (req,res) => {
     req.session.destroy();
     res.send("logged out!");
-});
-
-// TESTING user auth
-router.get("/secretclub", (req,res) => {
-
-    // protect routes
-    // if this obj doesn't exist, user not logged in 
-    if(!req.session.user) { 
-        return res.status(401).send("login required!");
-    } else {
-        res.send(`WELCOME ${req.session.user.username}`);
-    }
 });
 
 module.exports = router;
