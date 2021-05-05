@@ -7,7 +7,7 @@ const itemData = [
       quantity: 2,
       unit_of_measurement: "gallon",
       par_level: 1,
-      exp_date: 2021-05-11,
+      exp_date: "2021-05-11",
       section_id: 1
     },
     {
@@ -16,7 +16,7 @@ const itemData = [
       quantity: 1,
       unit_of_measurement: "dozen",
       par_level: 1,
-      exp_date: 2021-05-28,
+      exp_date: "2021-05-28",
       section_id: 1
     },
     {
@@ -65,7 +65,7 @@ const itemData = [
       quantity: 1,
       unit_of_measurement: "bottle",
       par_level: 1,
-      exp_date: 2021-06-04,
+      exp_date: "2021-06-04",
       section_id: 4
     },
     {
@@ -74,7 +74,7 @@ const itemData = [
       quantity: 1,
       unit_of_measurement: "package",
       par_level: 1,
-      exp_date: 2021-08-04,
+      exp_date: "2021-08-04",
       section_id: 5
     },
     {
@@ -115,7 +115,7 @@ const itemData = [
       quantity: 1,
       unit_of_measurement: "package",
       par_level: 1,
-      exp_date: 2021-05-28,
+      exp_date: "2021-05-28",
       section_id: 7
     },
     {
@@ -164,7 +164,7 @@ const itemData = [
       quantity: 1,
       unit_of_measurement: "package",
       par_level: 1,
-      exp_date: 2021-05-11,
+      exp_date: "2021-05-11",
       section_id: 10
     },
     {
