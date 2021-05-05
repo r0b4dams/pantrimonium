@@ -53,7 +53,7 @@ router.get('/section/:id', async (req,res) => {
         console.log("***************");
         console.log(oneSectionJson);
         const myItems = {items: oneSectionJson}
-        res.render('item', myItems);
+        res.render('section', myItems);
     };
 });
 
