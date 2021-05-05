@@ -1,8 +1,5 @@
 const router = require('express').Router();
-const User = require('./User');
-const Inventory = require('./Inventory');
-const Section = require('./Section');
-const Item = require('./Item');
+const Section = require('../models');
 
 // authorization routes
 const auth = require("./auth");
@@ -17,10 +14,14 @@ router.get('/', function (req, res) {
     res.render('homepage');
 })
 
-router.get('/kitchen/:id', async (req,res) => {
-    const sectionData = await Section.findByPk(req.params.id);
-    console.log(sectionData);
+router.get('/kitchen', async (req,res) => {
+    console.log(req.session);
     res.render('kitchen');
+    // if(req.session.user.id) {
+    //     const sectionData = await Section.findByPk();
+    //     console.log(sectionData);
+    // }
+   
 });
 
 module.exports = router;
