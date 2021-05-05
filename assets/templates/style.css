@@ -10,6 +10,14 @@ nav {
     background-color: #ff8201;
 }
 
+.logo-image {
+    background-image: url("images/logoFridge3.png");
+    background-color: #cccccc;
+    background-size: 50px 50px;
+    background-position: left center;
+    background-repeat: no-repeat;
+  }
+  
 .runningLow {
     display: flex;
     justify-content: space-between;
