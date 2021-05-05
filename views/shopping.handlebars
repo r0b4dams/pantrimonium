@@ -1,3 +1,4 @@
+    
     <div class="rounded container col-10 p-2 w-100 m-3 mx-auto">
         <div class="row">
           <div class="rounded col-md-5 mx-3">
@@ -17,25 +18,16 @@
                 </div>
                 <h6>
                 <!-- populate running low ingredients here -->
-                <div style="background-color: #ff9a4a;" class="row rounded my-2 runningLow w-100 mx-auto p-1">
-                    <span>TEST{{item.name}}</span>
-                    <span>{{item.quantity}} {{item.unit_of_measurement}}</span>
-                    <span>{{item.type}}</span>
-                    <span>
-                      <button type="button" class="btn btn-primary btn-sm" id="update" data-toggle="modal" data-target="#updateModal" data-name="{{ingredient.name}}" data-qty="{{ingredient.quantity}}" data-cat="{{ingredient.category}}" data-id="{{ingredient.id}}">Update</button>
-                      <button type="button" class="btn btn-danger btn-sm" id="delete" data-id="{{ingredient.id}}"><i class="far fa-trash-alt"></i></button>
-                    </span>
-                </div>
-  
+ 
                 {{#each items as |item|}}
-                  {{if quantity < par_level}}
+                  {{if item.quantity < item.par_level}}
                     <div style="background-color: #ff9a4a;" class="row rounded my-2 runningLow w-100 mx-auto p-1">
                       <span>{{item.name}}</span>
                       <span>{{item.quantity}} {{item.unit_of_measurement}}</span>
                       <span>{{item.type}}</span>
                       <span>
                         <button type="button" class="btn btn-primary btn-sm" id="update" data-toggle="modal" data-target="#updateModal" data-name="{{item.name}}" data-qty="{{item.quantity}}" data-cat="{{item.type}}" data-id="{{item.id}}" data-uom="{{item.unit_of_measurement}}">Update</button>
-                        <button type="button" class="btn btn-danger btn-sm" id="delete" data-id="{{id}}"><i class="far fa-trash-alt"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm" id="delete" data-id="{{item.id}}"><i class="far fa-trash-alt"></i></button>
                       </span>
                     </div>
                   {{/if}}
@@ -48,7 +40,7 @@
         
   </div>
 
-  <!-- update modal -->
+  <!-- Update modal -->
   <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
