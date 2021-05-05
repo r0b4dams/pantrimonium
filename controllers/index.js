@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Section = require('../models');
+const Section = require('../models/Section');
 
 // authorization routes
 const auth = require("./auth");
@@ -15,13 +15,24 @@ router.get('/', function (req, res) {
 })
 
 router.get('/kitchen', async (req,res) => {
-    console.log(req.session);
-    res.render('kitchen');
-    // if(req.session.user.id) {
-    //     const sectionData = await Section.findByPk();
-    //     console.log(sectionData);
-    // }
-   
+    if(!req.session.user) {
+        res.render('homepage')
+    } else {
+        const sectionData = await Section.findAll({
+            where: {
+                // user_id: req.session.user.id
+                user_id: 1
+            }
+        })
+        // console.log(sectionData);
+        const sectionDataJson = sectionData.map(section => section.get({plain:true}))
+        console.log(req.session.user);
+        console.log("================");
+        // console.log(sectionDataJson);
+        const me = {sections: sectionDataJson}
+        console.log(me)
+        res.render('kitchen', me);
+    };   
 });
 
 module.exports = router;
