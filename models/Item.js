@@ -17,7 +17,7 @@ Item.init(
     },
     type: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     quantity: {
         type: DataTypes.FLOAT,
@@ -25,7 +25,7 @@ Item.init(
     },
     unit_of_measurement: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     par_level: {
         type: DataTypes.INTEGER,

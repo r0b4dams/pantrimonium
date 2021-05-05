@@ -24,16 +24,10 @@ User.init(
         isEmail: true,
       },
     },
-    phone: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        validate: {
-          isNumeric: true,
-        },
-    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validate: {
         len: [8],
       },
