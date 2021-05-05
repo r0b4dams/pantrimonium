@@ -1,5 +1,5 @@
 const seedUsers = require('./user-seeds');
-const seedInventories = require('./inventory-seeds');
+// const seedInventories = require('./inventory-seeds');
 const seedSections = require('./section-seeds');
 const seedItems = require('./item-seeds');
 
@@ -12,8 +12,8 @@ const seedAll = async () => {
   await seedUsers();
   console.log('\n----- USERS SEEDED -----\n');
 
-  await seedInventories();
-  console.log('\n----- INVENTORIES SEEDED -----\n');
+  // await seedInventories();
+  // console.log('\n----- INVENTORIES SEEDED -----\n');
 
   await seedSections();
   console.log('\n----- SECTIONS SEEDED -----\n');

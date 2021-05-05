@@ -15,15 +15,15 @@ Section.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // Store a reference of the `id` of the `inventory` the section is going in 
-    inventory_id: {
+    // Store a reference of the `id` of user this section belongs to
+    user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'inventory',
+          model: 'user',
           key: 'id',
         },
-      },
+    },
   },
   {
     sequelize,
