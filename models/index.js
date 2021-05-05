@@ -3,21 +3,12 @@ const Inventory = require('./Inventory');
 const Section = require('./Section');
 const Item = require('./Item');
 
-User.hasOne(Inventory, {
+User.hasMany(Section, {
    foreignKey: 'user_id',
-   onDelete: 'CASCADE'
 });
 
-Inventory.belongsTo(User, {
+Section.belongsTo(User, {
     foreignKey: 'user_id'
-});
-
-Inventory.hasMany(Section, {
-    foreignKey: 'inventory_id'
-});
-
-Section.belongsTo(Inventory, {
-    foreignKey: 'inventory_id'
 });
 
 Section.hasMany(Item, {
@@ -28,8 +19,16 @@ Item.belongsTo(Section, {
     foreignKey: 'section_id'
 });
 
-module.exports = {User, Inventory, Section, Item};
+module.exports = {User, Section, Item};
 
+
+// Inventory.belongsTo(User, {
+//     foreignKey: 'user_id'
+// });
+
+// Inventory.hasMany(Section, {
+//     foreignKey: 'inventory_id'
+// });
 
 // const Ingredient = require('./Ingredient');
 // const Recipe = require('./Recipe');
