@@ -26,6 +26,10 @@ const ButtonHandler = async (event) => {
   if (event.target.hasAttribute('id')) {
     action = event.target.getAttribute('id');
   }
+  if (action =="hide") {
+    var x = document.getElementById(event.target.getAttribute('data-id'));
+    x.style.display = "none";
+  }
   if (event.target.hasAttribute('data-name') && action=="update") {
     console.log("updating");
     document.getElementById("updateModalName").defaultValue = event.target.getAttribute('data-name');

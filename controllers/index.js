@@ -76,7 +76,7 @@ router.get('/shopping', async (req,res) => {
         // console.log(sectionData);
         const items = sectionData.map(items => items.get({plain:true}));
         // console.log(items);
-        res.render('shopping', {items: items});
+        res.render('shopping', {items: items, logged_in:true});
     };   
 });
 
