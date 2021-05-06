@@ -15,52 +15,74 @@ router.get('/', function (req, res) {
     res.render('homepage');
 })
 
-router.get('/test3', async function (req, res) {
+router.get('/shopping', async (req,res) => {
     if(!req.session.user) {
         res.render('homepage')
     } else {
-        const sectionData = await Section.findAll ({
-            where: {user_id: 1}
+        const sectionData = await Section.findAll({
+            where: {
+                // user_id: req.session.user.id
+                user_id: 1
+            },
+            include: [{ model: Item }],
         })
-    }
+        console.log(sectionData);
+        const items = sectionData.map(items => items.get({plain:true}))
+        console.log(items)
+        res.render('shopping', {items: items});
+    };   
+});
+
+router.get('/summary', async (req,res) => {
+    if(!req.session.user) {
+        res.render('homepage')
+    } else {
+    //     const sectionData = await Item.findAll({
+    //         where: {
+    //             // user_id: req.session.user.id
+    //             section_id: 1 || 2 || 3,
+    //         },
+    //     })
+    //     // console.log(sectionData);
+    //     const items = sectionData.map(items => items.get({plain:true}))
+    //     console.log(items);
+    //     res.render('summary', {items: items, section});
+    // };   
+
+    const sectionData = await Section.findAll({
+        where: {
+            // user_id: req.session.user.id
+            user_id: 1
+        },
+        include: [{ model: Item }],
+    })
     console.log(sectionData);
-})
+    const items = sectionData.map(items => items.get({plain:true}))
+    console.log(items)
+    res.render('summary', {items: items});
+};   
+});
 
 
-// router.get('/test', async (req, res) => {
-//     try {
-//       // Find the logged in user based on the session ID
-//       const userData = await Section.findByPk(req.session.user.id, {
-//         where: {user_id : req.session.user.id},
-//         // attributes: { exclude: ['password'] },
-//         include: [{ model: Item }],
-//       });
-//       console.log(userData);
-  
-//       const user = userData.get({ plain: true });
-  
-//       res.render('shopping', {
-//         ...Item
-//       });
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   });
-
-router.get('/shopping', function (req, res) {
-    if (!req.session.user) {
-        res.render("homepage");
+router.get('/kitchen', async (req,res) => {
+    if(!req.session.user) {
+        res.render('homepage')
     } else {
-        res.render('shopping');
-    }
-})
-
-router.get('/summary', function (req, res) {
-    if (!req.session.user) {
-        res.render("homepage");
-    } else {
-        res.render('summary');
-    }
-})
+        const sectionData = await Section.findAll({
+            where: {
+                // user_id: req.session.user.id
+                user_id: 1
+            }
+        })
+        // console.log(sectionData);
+        const sectionDataJson = sectionData.map(section => section.get({plain:true}))
+        console.log(req.session.user);
+        console.log("================");
+        // console.log(sectionDataJson);
+        const me = {sections: sectionDataJson}
+        console.log(me)
+        res.render('kitchen', me);
+    };   
+});
 
 module.exports = router;

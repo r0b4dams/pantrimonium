@@ -11,29 +11,31 @@
         <div class="row">
             <div class="rounded mx-3 p-2 mb-3 btn-block"  style="background-color: #ffb202;">
                 <div class="runningLow w-100 mx-auto p-1">
-                    <span><h2>Shoping List</h2></span>
+                    <span><h2>Shopping List</h2></span>
                     <span>
                         <button type="button" class="btn btn-success btn-sm" id="add" data-toggle="modal" data-target="#addModal">+Add to List</button>
                     </span>
                 </div>
                 <h6>
                 <!-- populate running low ingredients here -->
- 
-                {{#each items as |item|}}
-                  {{if item.quantity < item.par_level}}
-                    <div style="background-color: #ff9a4a;" class="row rounded my-2 runningLow w-100 mx-auto p-1">
-                      <span>{{item.name}}</span>
-                      <span>{{item.quantity}} {{item.unit_of_measurement}}</span>
-                      <span>{{item.type}}</span>
-                      <span>
-                        <button type="button" class="btn btn-primary btn-sm" id="update" data-toggle="modal" data-target="#updateModal" data-name="{{item.name}}" data-qty="{{item.quantity}}" data-cat="{{item.type}}" data-id="{{item.id}}" data-uom="{{item.unit_of_measurement}}">Update</button>
-                        <button type="button" class="btn btn-danger btn-sm" id="delete" data-id="{{item.id}}"><i class="far fa-trash-alt"></i></button>
-                      </span>
-                    </div>
-                  {{/if}}
-                {{/each}}
+
                 </h6>
-  
+   
+                {{#each items }}
+                    {{#each items}}
+                      {{#if quantity}}
+                <div style="background-color: #ff9a4a;" class="row rounded my-2 w-100 mx-auto p-1 col-12">
+                    <span class = "col-3">{{name}}</span>
+                    <span class = "col-3">{{quantity}} {{unit_of_measurement}}</span>
+                    <span class = "col-3">{{type}}</span>
+                    <span class = "col-3 text-right">
+                      <button type="button" class="btn btn-primary btn-sm" id="update" data-toggle="modal" data-target="#updateModal" data-name="{{name}}" data-qty="{{quantity}}" data-cat="{{category}}" data-id="{{id}}">Update</button>
+                      <button type="button" class="btn btn-danger btn-sm" id="delete" data-id="{{id}}"><i class="far fa-trash-alt"></i></button>
+                    </span>
+                </div>
+                      {{/if}}
+                    {{/each}}
+                {{/each}}
               </div>
             </div>
         </div>    
