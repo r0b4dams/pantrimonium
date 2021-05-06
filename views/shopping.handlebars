@@ -29,8 +29,7 @@
                     <span class = "col-3">{{quantity}} {{unit_of_measurement}}</span>
                     <span class = "col-3">{{type}}</span>
                     <span class = "col-3 text-right">
-                      <button type="button" class="btn btn-success btn-sm" id="update" data-toggle="modal" data-target="#updateModal" data-name="{{name}}" data-qty="{{quantity}}" data-cat="{{type}}" data-id="{{id}}">Update</button>
-                      <button type="button" class="btn btn-danger btn-sm" id="delete" data-id="{{id}}"><i class="far fa-trash-alt"></i></button>
+                      <button type="button" class="btn btn-success btn-sm" id="update" data-toggle="modal" data-target="#updateModal" data-name={{name}} data-qty={{quantity}} data-cat={{type}} data-id={{id}}>Update</button>
                     </span>
                 </div>
                       {{/if}}
@@ -89,7 +88,7 @@
           </button>
         </div>
   
-        <div class="modal-body">
+        <form id="newShoppingItemForm" class="modal-body">
           <div class="form-group">
             <label for="addModalName" class="col-form-label">Name:</label>
             <input type="text" class="form-control" id="addModalName">
@@ -121,19 +120,19 @@
             <label for="addModalSec" class="col-form-label">Where do you want to Store this?</label>
             <select id="addModalSec" name="addModalSec">
               {{#each items}}
-              <option value="{{name}}">{{name}}</option>
+              <option value={{id}}>{{name}}</option>
               {{/each}}
             </select>
           </div>
-        </div>
-        <form class="add-form">
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
-          </div>
+          {{!-- <div class="add-form"> --}}
+            {{!-- <div class="modal-footer"> --}}
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="addbtn" type="button" class="btn btn-primary">Add</button>
+            {{!-- </div> --}}
+          {{!-- </div> --}}
         </form>
       </div>
     </div>
   </div>
 
-  <script src="./js/forms.js"></script>
+  <script src="/js/forms.js"></script>
