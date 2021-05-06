@@ -1,10 +1,6 @@
 <!-- content here My Refrigerator -->
  <div class="rounded container col-10 p-2 w-100 m-3 mx-auto">
-  <div class="row">
-    <div class="rounded col-md-5 mx-3">
-      <button type="button" class="btn btn-primary btn-sm" id="addIngredient" data-toggle="modal" data-target="#updateModal" data-name="{{item.name}}" data-qty="{{item.quantity}}" data-cat="{{item.category}}" data-id="{{item.id}}">+Add Items</button>
-    </div>  
-  </div>
+  
 
   <!-- add item modal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
@@ -93,6 +89,11 @@
       <div class="rounded mx-3 p-2 mb-3 btn-block"  style="background-color: #ffb202;">
           <div class="runningLow w-100 mx-auto p-1">
               <span><h2>My Refrigerator</h2></span>
+              <div class="row">
+    <div class="rounded col-md-5 mx-3">
+      <button type="button" class="btn btn-success btn-sm" id="addIngredient" data-toggle="modal" data-target="#updateModal" data-name="{{item.name}}" data-qty="{{item.quantity}}" data-cat="{{item.category}}" data-id="{{item.id}}">+Add Items</button>
+    </div>  
+  </div>
           </div>
           <h6>
           <!-- populate section items here -->           
@@ -100,12 +101,14 @@
                 {{#if exp_date}}
                 {{/if}}
                 <div style="background-color: #ff9a4a;" class="row rounded my-2 runningLow w-100 mx-auto p-1">
-                  <span>{{item.name}}</span>
-                  <span>{{item.quantity}} {{unit_of_measurement}}</span>
-                  <span>{{item.type}}</span>
-                  <span>{{exp_date}}</span>
+                  <span class = "col-2">{{item.name}}</span>
+                  <span class = "col-2">{{item.quantity}} {{unit_of_measurement}}</span>
                   
-                  <span>
+                  <span class = "col-2">{{item.type}}</span>
+
+                  <span class = "col-2">{{exp_date}}</span>                  
+            
+                  <span class = "col-3 text-right">
                   <button type="button" class="btn btn-primary btn-sm" id="update" data-toggle="modal" data-target="#updateModal" data-name="{{ingredient.name}}" data-qty="{{ingredient.quantity}}" data-cat="{{ingredient.category}}" data-id="{{ingredient.id}}">Update</button>
                   <button type="button" class="btn btn-danger btn-sm" id="delete" data-id="{{item.id}}"><i class="far fa-trash-alt"></i></button>
                   </span>
@@ -155,37 +158,4 @@
 </div>
 </div>
 </div>
-
-<!-- Add modal -->  
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-  <div class="modal-header">
-    <h5 class="modal-title" id="addModalLabel">Add Item</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-
-  <div class="modal-body">
-    <div class="form-group">
-      <label for="addModalTitle" class="col-form-label">Name:</label>
-      <input type="text" class="form-control" id="addModalName">
-      <input type="hidden" id="addID">
-    </div>
-    <div class="form-group">
-      <label for="addModalText" class="col-form-label">Quantity:</label>
-      <input type="number" class="form-control" id="addModalQty">
-    </div>
-  </div>
-  <form class="add-form">
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
-    </div>
-  </form>
-</div>
-</div>
-</div>
-
 
