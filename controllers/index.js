@@ -6,56 +6,89 @@ const Item = require('../models/Item');
 const auth = require("./auth");
 router.use(auth);
 
-// db routes
-// const api = require("./api");
-// router.use(api);
-
-// test handlebars functionality
+// renders login/signup page
 router.get('/', function (req, res) {
     res.render('homepage');
-})
+});
 
 // Renders all user's sections to page
 router.get('/kitchen', async (req,res) => {
+
+    // redirect to homepage if user not logged in
     if(!req.session.user) {
-        res.render('homepage')
+        res.render("homepage");
     } else {
-        const sectionData = await Section.findAll({
+
+        // select all sections associated with this user id
+        const dbSections = await Section.findAll({
             where: {
-                // user_id: req.session.user.id
                 user_id: req.session.user.id
             }
-        })
-        // console.log(sectionData);
-        const sectionDataJson = sectionData.map(section => section.get({plain:true}))
-        console.log(req.session.user);
-        console.log("================");
-        // console.log(sectionDataJson);
-        const mySections = {sections: sectionDataJson}
-        // console.log(me)
-        res.render('kitchen', mySections);
+        });
+
+        // map to new array to parse out required info from metadata
+        const sections = dbSections.map(section => section.get({plain:true}));
+
+        // put array into object so Handlebars can loop
+        res.render('kitchen', { sections });
     };   
 });
 
 // Renders all items of the user's selected section
 router.get('/section/:id', async (req,res) => {
-    if(!req.session.user) {
-        res.render('homepage')
+
+    // redirect to homepage if user not logged in
+    if (!req.session.id) {
+        res.render("homepage");
     } else {
-        const oneSection = await Item.findAll({
+
+        // select all items associated with this section id
+        const dbItems = await Item.findAll({
             where: {
-                // id: section_id
-                section_id: 1
+                section_id: req.params.id // production
+                // section_id: 1                // testing
             }
-        })
-        // console.log(oneSection);
-        const oneSectionJson = oneSection.map(item => item.get({plain:true}))
-        console.log("***************");
-        console.log(oneSectionJson);
-        const myItems = {items: oneSectionJson}
-        res.render('section', myItems);
-    };
+        });
+
+        // map to new array to parse out required info from metadata
+        const items = dbItems.map((gallery) => gallery.get({ plain: true }));
+
+        // put array into object so Handlebars can loop
+        res.render("section", {items});
+    }
 });
 
+// Renders all items accross all sections
+router.get('/summary', async (req,res) => {
+
+    // redirect to homepage if user not logged in
+    if(!req.session.user) {
+        res.render("homepage");
+    } else {
+
+        // get every section associated with user, including items
+        const dbSummary = await Section.findAll({
+            where: {
+                user_id: req.session.user.id  // production
+                // user_id: 3                    // testing
+            },
+            include: {
+                model: Item
+            }
+        });
+
+        // map to new array to parse out required info from metadata
+        const summary = dbSummary.map((sectionsWithItems) => sectionsWithItems.get({ plain: true }));
+
+        // put array into object so Handlebars can loop
+        res.render("summary", {summary});
+    }
+});
+
+// Renders all items flagged as running low 
+router.get('/shopping', async (req,res) => {
+
+
+});
 
 module.exports = router;
