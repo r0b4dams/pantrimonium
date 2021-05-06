@@ -1,3 +1,26 @@
+const shoppingAddModal = document.querySelector('#newShoppingItemForm');
+const addBtn = document.querySelector('#addbtn');
+// alert('hello');
+console.log(shoppingAddModal);
+addBtn.addEventListener('click',  e=> {
+  e.preventDefault();
+  console.log('btn clicked');
+  const formObj = {
+    name: shoppingAddModal.querySelector('#addModalName').value,
+    quantity: shoppingAddModal.querySelector('#addModalQty').value,
+    type: shoppingAddModal.querySelector('#addModalCat').value,
+    unit_of_measurement: shoppingAddModal.querySelector('#addModalUOM').value,
+    par_level: shoppingAddModal.querySelector('#addModalPar').value,
+    exp_date: shoppingAddModal.querySelector('#addModalExp').value,
+    section_id: shoppingAddModal.querySelector('#addModalSec').value,
+  }
+  console.log(formObj);
+})
+
+
+
+
+
 const ButtonHandler = async (event) => {
   let action = "";
   if (event.target.hasAttribute('id')) {

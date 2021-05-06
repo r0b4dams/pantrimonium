@@ -90,7 +90,7 @@
           </button>
         </div>
   
-        <div class="modal-body">
+        <form id="newShoppingItemForm" class="modal-body">
           <div class="form-group">
             <label for="addModalName" class="col-form-label">Name:</label>
             <input type="text" class="form-control" id="addModalName">
@@ -122,19 +122,19 @@
             <label for="addModalSec" class="col-form-label">Where do you want to Store this?</label>
             <select id="addModalSec" name="addModalSec">
               {{#each items}}
-              <option value="{{name}}">{{name}}</option>
+              <option value={{id}}>{{name}}</option>
               {{/each}}
             </select>
           </div>
-        </div>
-        <form class="add-form">
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
-          </div>
+          {{!-- <div class="add-form"> --}}
+            {{!-- <div class="modal-footer"> --}}
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="addbtn" type="button" class="btn btn-primary">Add</button>
+            {{!-- </div> --}}
+          {{!-- </div> --}}
         </form>
       </div>
     </div>
   </div>
 
-  <script src="./js/forms.js"></script>
+  <script src="/js/forms.js"></script>
