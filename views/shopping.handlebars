@@ -1,5 +1,5 @@
     
-    <div class="rounded container col-10 p-2 w-100 m-3 mx-auto">
+    <div class="rounded container col-10 p-2 w-100 m-3 mx-auto item-list">
         <div class="row">
           <div class="rounded col-md-5 mx-3">
             <button type="button" class="btn btn-dark rounded mx-3 p-2 mb-3 text-center align-middle btn-block">Email me this list</button>
@@ -23,13 +23,13 @@
    
                 {{#each items }}
                     {{#each items}}
-                      {{#if quantity}}
+                      {{#if (ifCond quantity '<=' par_level true)}}
                 <div style="background-color: #ff9a4a;" class="row rounded my-2 w-100 mx-auto p-1 col-12">
                     <span class = "col-3">{{name}}</span>
                     <span class = "col-3">{{quantity}} {{unit_of_measurement}}</span>
                     <span class = "col-3">{{type}}</span>
                     <span class = "col-3 text-right">
-                      <button type="button" class="btn btn-primary btn-sm" id="update" data-toggle="modal" data-target="#updateModal" data-name="{{name}}" data-qty="{{quantity}}" data-cat="{{category}}" data-id="{{id}}">Update</button>
+                      <button type="button" class="btn btn-primary btn-sm" id="update" data-toggle="modal" data-target="#updateModal" data-name="{{name}}" data-qty="{{quantity}}" data-cat="{{type}}" data-id="{{id}}">Update</button>
                       <button type="button" class="btn btn-danger btn-sm" id="delete" data-id="{{id}}"><i class="far fa-trash-alt"></i></button>
                     </span>
                 </div>
@@ -55,16 +55,16 @@
   
         <div class="modal-body">
           <div class="form-group">
-            <label for="updateModalTitle" class="col-form-label">Name:</label>
+            <label for="updateModalName" class="col-form-label">Name:</label>
             <input type="text" class="form-control" id="updateModalName">
             <input type="hidden" id="updateID">
           </div>
           <div class="form-group">
-            <label for="updateModalText" class="col-form-label">Quantity:</label>
+            <label for="updateModalQty" class="col-form-label">Quantity:</label>
             <input type="number" class="form-control" id="updateModalQty">
           </div>
           <div class="form-group">
-            <label for="updateModalText" class="col-form-label">Category:</label>
+            <label for="updateModalCat" class="col-form-label">Category:</label>
             <input type="text" class="form-control" id="updateModalCat">
           </div>
         </div>
@@ -109,3 +109,5 @@
       </div>
     </div>
   </div>
+
+  <script src="./js/forms.js"></script>
