@@ -22,7 +22,7 @@ const ButtonHandler = async (event) => {
     if (response.ok) {
       location.reload();
     } else {
-      alert('Failed to delete blog');
+      alert('Failed to delete');
     }
   }
 
