@@ -4,22 +4,22 @@ const userData = [
     {
       username: 'Angelica',
       email: 'angelica@gmail.com',
-      password: 'password1'  
+      password: '$2b$10$ylscr/cPIcUJoNpHizUgdOvwhCGhmTewPOG9MCJIgAw440Pi17o.a'
     },
     {
       username: 'Sung',
       email: 'sung@gmail.com',
-      password: 'password2'  
+      password: '$2b$10$ylscr/cPIcUJoNpHizUgdOvwhCGhmTewPOG9MCJIgAw440Pi17o.a'
     },
     {
       username: 'Robert',
       email: 'robert@gmail.com',
-      password: 'password3'  
+      password: '$2b$10$ylscr/cPIcUJoNpHizUgdOvwhCGhmTewPOG9MCJIgAw440Pi17o.a' 
     },
     {
       username: 'Rick',
       email: 'rick@gmail.com',
-      password: 'password4'  
+      password: '$2b$10$ylscr/cPIcUJoNpHizUgdOvwhCGhmTewPOG9MCJIgAw440Pi17o.a'
     },
 ]
 

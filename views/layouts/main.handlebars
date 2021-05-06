@@ -19,8 +19,12 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+
+            {{!-- TESTING --}}
             <li class="nav-item active">
-              <a class="nav-link" href="./">Home</a>
+              <a class="nav-link btn btn-outline-success my-2 my-sm-0" href="/kitchen">Kitchen</a>
+              <a class="nav-link btn btn-outline-success my-2 my-sm-0" href="/summary">Summary</a>
+              <a class="nav-link btn btn-outline-success my-2 my-sm-0" href="/shopping">Shopping List</a>
             </li>
 
             {{#if logged_in}}
@@ -37,6 +41,7 @@
                   <a class="nav-link disabled" href="/"></a>
             {{/if}}
           </ul>
+          
           <form class="form-inline my-2 my-lg-0">
           {{#if logged_in}}
             <button class="btn btn-outline-success my-2 my-sm-0" id="logout">Logout</button>
