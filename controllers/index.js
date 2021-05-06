@@ -1,6 +1,6 @@
+const {User, Item, Inventory, Section} = require('../models');
+
 const router = require('express').Router();
-const Section = require('../models/Section');
-const Item = require('../models/Item');
 
 // authorization routes
 const auth = require("./auth");
@@ -15,7 +15,43 @@ router.get('/', function (req, res) {
     res.render('homepage');
 })
 
-// Renders all user's sections to page
+router.get('/shopping', async (req,res) => {
+    if(!req.session.user) {
+        res.render('homepage')
+    } else {
+        const sectionData = await Section.findAll({
+            where: {
+                // user_id: req.session.user.id
+                user_id: 1
+            },
+            include: [{ model: Item }],
+        })
+        console.log(sectionData);
+        const items = sectionData.map(items => items.get({plain:true}))
+        console.log(items)
+        res.render('shopping', {items: items});
+    };   
+});
+
+router.get('/summary', async (req,res) => {
+    if(!req.session.user) {
+        res.render('homepage')
+    } else {
+    const sectionData = await Section.findAll({
+        where: {
+            // user_id: req.session.user.id
+            user_id: 1
+        },
+        include: [{ model: Item }],
+    })
+    console.log(sectionData);
+    const items = sectionData.map(items => items.get({plain:true}))
+    console.log(items)
+    res.render('summary', {items: items});
+    };   
+});
+
+
 router.get('/kitchen', async (req,res) => {
     if(!req.session.user) {
         res.render('homepage')
@@ -23,7 +59,7 @@ router.get('/kitchen', async (req,res) => {
         const sectionData = await Section.findAll({
             where: {
                 // user_id: req.session.user.id
-                user_id: req.session.user.id
+                user_id: 1
             }
         })
         // console.log(sectionData);
@@ -31,31 +67,10 @@ router.get('/kitchen', async (req,res) => {
         console.log(req.session.user);
         console.log("================");
         // console.log(sectionDataJson);
-        const mySections = {sections: sectionDataJson}
-        // console.log(me)
-        res.render('kitchen', mySections);
+        const me = {sections: sectionDataJson}
+        console.log(me)
+        res.render('kitchen', me);
     };   
 });
-
-// Renders all items of the user's selected section
-router.get('/section/:id', async (req,res) => {
-    if(!req.session.user) {
-        res.render('homepage')
-    } else {
-        const oneSection = await Item.findAll({
-            where: {
-                // id: section_id
-                section_id: 1
-            }
-        })
-        // console.log(oneSection);
-        const oneSectionJson = oneSection.map(item => item.get({plain:true}))
-        console.log("***************");
-        console.log(oneSectionJson);
-        const myItems = {items: oneSectionJson}
-        res.render('section', myItems);
-    };
-});
-
 
 module.exports = router;
