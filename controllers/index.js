@@ -1,12 +1,12 @@
+const {User, Item, Section} = require('../models');
+
 const router = require('express').Router();
-const Section = require('../models/Section');
-const Item = require('../models/Item');
 
 // authorization routes
 const auth = require("./auth");
 router.use(auth);
 
-// renders login/signup page
+// Renders login/signup page
 router.get('/', function (req, res) {
     res.render('homepage');
 });
@@ -58,37 +58,42 @@ router.get('/section/:id', async (req,res) => {
     }
 });
 
-// Renders all items accross all sections
-router.get('/summary', async (req,res) => {
-
-    // redirect to homepage if user not logged in
+// Renders user's shopping list
+router.get('/shopping', async (req,res) => {
     if(!req.session.user) {
-        res.render("homepage");
+        res.render('homepage');
     } else {
-
-        // get every section associated with user, including items
-        const dbSummary = await Section.findAll({
+        const sectionData = await Section.findAll({
             where: {
                 user_id: req.session.user.id  // production
-                // user_id: 3                    // testing
+                // user_id: 1                 // testing
             },
-            include: {
-                model: Item
-            }
+            include: [{ model: Item }],
         });
-
-        // map to new array to parse out required info from metadata
-        const summary = dbSummary.map((sectionsWithItems) => sectionsWithItems.get({ plain: true }));
-
-        // put array into object so Handlebars can loop
-        res.render("summary", {summary});
-    }
+        // console.log(sectionData);
+        const items = sectionData.map(items => items.get({plain:true}));
+        // console.log(items);
+        res.render('shopping', {items: items});
+    };   
 });
 
-// Renders all items flagged as running low 
-router.get('/shopping', async (req,res) => {
-
-
+// Renders all user's sections to page
+router.get('/summary', async (req,res) => {
+    if(!req.session.user) {
+        res.render('homepage');
+    } else {
+    const sectionData = await Section.findAll({
+        where: {
+            user_id: req.session.user.id  // production
+            // user_id: 1                       // testing
+        },
+        include: [{ model: Item }],
+    })
+    // console.log(sectionData);
+    const items = sectionData.map(items => items.get({plain:true}));
+    // console.log(items)
+    res.render('summary', {items: items});
+    };   
 });
 
 module.exports = router;
