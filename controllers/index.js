@@ -1,6 +1,8 @@
 const {User, Item, Inventory, Section} = require('../models');
 
 const router = require('express').Router();
+const Section = require('../models/Section');
+const Item = require('../models/Item');
 
 // authorization routes
 const auth = require("./auth");
@@ -37,18 +39,6 @@ router.get('/summary', async (req,res) => {
     if(!req.session.user) {
         res.render('homepage')
     } else {
-    //     const sectionData = await Item.findAll({
-    //         where: {
-    //             // user_id: req.session.user.id
-    //             section_id: 1 || 2 || 3,
-    //         },
-    //     })
-    //     // console.log(sectionData);
-    //     const items = sectionData.map(items => items.get({plain:true}))
-    //     console.log(items);
-    //     res.render('summary', {items: items, section});
-    // };   
-
     const sectionData = await Section.findAll({
         where: {
             // user_id: req.session.user.id
@@ -60,7 +50,7 @@ router.get('/summary', async (req,res) => {
     const items = sectionData.map(items => items.get({plain:true}))
     console.log(items)
     res.render('summary', {items: items});
-};   
+    };   
 });
 
 
