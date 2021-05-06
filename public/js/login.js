@@ -18,7 +18,7 @@ const loginFormHandler = async (event) => {
     if (response.ok) {
       alert("login successful!");
       // If successful, redirect the browser to the profile page
-      // document.location.replace('/kitchen');
+      document.location.replace('/kitchen');
     } else {
       alert(response.statusText);
     }
@@ -43,7 +43,7 @@ const signupFormHandler = async (event) => {
     console.log(response);
 
     if (response.ok) {
-      alert("New user created!!!");
+      alert("New user created! \nPlease login");
     } else {
       alert(response.statusText);
     }

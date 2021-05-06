@@ -1,6 +1,9 @@
 const {User, Item, Section} = require('../models');
-
 const router = require('express').Router();
+const apiRoutes = require('./api');
+
+//api routes
+router.use('/api', apiRoutes);
 
 // authorization routes
 const auth = require("./auth");
