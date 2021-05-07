@@ -2,9 +2,17 @@ const shoppingAddModal = document.querySelector('#newShoppingItemForm');
 const addBtn = document.querySelector('#addbtn');
 const shoppingUpdateModal = document.querySelector('#updateShoppingItemForm');
 const updateBtn = document.querySelector('#updatebtn');
-const itemId = document.querySelector()
+const updateBtns = document.querySelectorAll('.updateBtn')
+let id;
 
+console.log(updateBtns);
 
+updateBtns.forEach(btn => {
+  btn.addEventListener('click', e => {
+    id = btn.id
+    console.log(id);
+  })
+})
 
 addBtn.addEventListener('click',  e=> {
   e.preventDefault();
@@ -38,7 +46,7 @@ addBtn.addEventListener('click',  e=> {
 
 updateBtn.addEventListener('click',  e=> {
   e.preventDefault();
-  console.log('btn clicked');
+  console.log(e.target);
   const formObj = {
     quantity: shoppingUpdateModal.querySelector('#updateModalQty').value,
   }
@@ -65,39 +73,39 @@ updateBtn.addEventListener('click',  e=> {
 
 
 
-// const ButtonHandler = async (event) => {
-//   let action = "";
-//   if (event.target.hasAttribute('id')) {
-//     action = event.target.getAttribute('id');
-//   }
-//   if (action =="hide") {
-//     var x = document.getElementById(event.target.getAttribute('data-id'));
-//     x.style.display = "none";
-//   }
-//   if (event.target.hasAttribute('data-name') && action=="update") {
-//     console.log("updating");
-//     document.getElementById("updateModalName").defaultValue = event.target.getAttribute('data-name');
-//     document.getElementById("updateModalQty").defaultValue = event.target.getAttribute('data-qty');
-//     document.getElementById("updateModalCat").defaultValue = event.target.getAttribute('data-cat');
-//     document.getElementById("updateID").defaultValue = event.target.getAttribute('data-id');
-//   }
+const ButtonHandler = async (event) => {
+  let action = "";
+  if (event.target.hasAttribute('id')) {
+    action = event.target.getAttribute('id');
+  }
+  if (action =="hide") {
+    var x = document.getElementById(event.target.getAttribute('data-id'));
+    x.style.display = "none";
+  }
+  if (event.target.hasAttribute('data-name') && action=="update") {
+    console.log("updating");
+    document.getElementById("updateModalName").defaultValue = event.target.getAttribute('data-name');
+    document.getElementById("updateModalQty").defaultValue = event.target.getAttribute('data-qty');
+    document.getElementById("updateModalCat").defaultValue = event.target.getAttribute('data-cat');
+    document.getElementById("updateID").defaultValue = event.target.getAttribute('data-id');
+  }
 
-  //delete portion
-//   if (event.target.hasAttribute('data-id') && action=="delete") {
-//     const id = event.target.getAttribute('data-id');
+  delete portion
+  if (event.target.hasAttribute('data-id') && action=="delete") {
+    const id = event.target.getAttribute('data-id');
 
-//     const response = await fetch(`/api/items/${id}`, {
-//       method: 'DELETE',
-//     });
+    const response = await fetch(`/api/items/${id}`, {
+      method: 'DELETE',
+    });
 
-//     if (response.ok) {
-//       location.reload();
-//     } else {
-//       alert('Failed to delete');
-//     }
-//   }
+    if (response.ok) {
+      location.reload();
+    } else {
+      alert('Failed to delete');
+    }
+  }
 
-// };
+};
 
 
 // const updateFormHandler = async (event) => {
@@ -123,9 +131,9 @@ updateBtn.addEventListener('click',  e=> {
 // };
 
 
-// document
-//   .querySelector('.item-list')
-//   .addEventListener('click', ButtonHandler);
+document
+  .querySelector('.item-list')
+  .addEventListener('click', ButtonHandler);
 
 // document
 //   .querySelector('.update-form')
