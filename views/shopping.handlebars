@@ -28,7 +28,7 @@
                     <span class = "col-1">{{type}}</span>
                     <span class = "col-2 text-right">{{exp_date}}</span>
                     <span class = "col-3 text-right">
-                      <button type="button" class="btn btn-success btn-sm noPrint" id="update" data-toggle="modal" data-target="#updateModal" data-name="{{name}}" data-qty="{{quantity}}" data-cat="{{type}}" data-id="{{id}}">Update</button>
+                      <button type="button" class="btn btn-success btn-sm noPrint updateBtn" id={{id}} data-toggle="modal" data-target="#updateModal" data-name="{{name}}" data-qty="{{quantity}}" data-cat="{{type}}" data-id={{id}}>Update</button>
                       <button type="button" class="btn btn-outline-danger btn-sm noPrint" id="hide" data-id="{{id}}"><i class="fas fa-ban"></i></button>
                     </span>
                 </div>
@@ -51,25 +51,25 @@
           </button>
         </div>
   
-        <div class="modal-body">
-          <div class="form-group">
+        <form id="updateShoppingItemForm" class="modal-body">
+          {{!-- <div class="form-group">
             <label for="updateModalName" class="col-form-label">Name:</label>
             <input type="text" class="form-control" id="updateModalName">
             <input type="hidden" id="updateID">
-          </div>
+          </div> --}}
           <div class="form-group">
             <label for="updateModalQty" class="col-form-label">Quantity:</label>
             <input type="number" min="0" class="form-control" id="updateModalQty">
+            <input type="hidden" id="updateID">
           </div>
-          <div class="form-group">
+          {{!-- <div class="form-group">
             <label for="updateModalCat" class="col-form-label">Category:</label>
             <input type="text" class="form-control" id="updateModalCat">
-          </div>
-        </div>
-        <form class="update-form">
+          </div> --}}
+          {{!-- <form class="update-form"> --}}
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success" data-dismiss="modal">Update</button>
+            <button id="updatebtn" type="button" class="btn btn-success" data-dismiss="modal">Update</button>
           </div>
         </form>
       </div>
@@ -93,10 +93,10 @@
             <input type="text" class="form-control" id="addModalName">
             <input type="hidden" id="addID">
           </div>
-          <div class="form-group">
+          {{!-- <div class="form-group">
             <label for="addModalQty" class="col-form-label">Quantity:</label>
             <input type="number" min="0"class="form-control" id="addModalQty">
-          </div>
+          </div> --}}
 
           <div class="form-group">
             <label for="addModalCat" class="col-form-label">Type:</label>
@@ -113,7 +113,7 @@
           </div>
           <div class="form-group">
             <label for="addModalExp" class="col-form-label">Expiration Date:</label>
-            <input type="date" class="form-control" id="addModalExp">
+            <input required type="date" class="form-control" id="addModalExp">
           </div>
           <div class="form-group">
             <label for="addModalSec" class="col-form-label">Where do you want to Store this?</label>

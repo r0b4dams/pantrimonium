@@ -1,21 +1,73 @@
 const shoppingAddModal = document.querySelector('#newShoppingItemForm');
 const addBtn = document.querySelector('#addbtn');
-// alert('hello');
-console.log(shoppingAddModal);
+const shoppingUpdateModal = document.querySelector('#updateShoppingItemForm');
+const updateBtn = document.querySelector('#updatebtn');
+const updateBtns = document.querySelectorAll('.updateBtn')
+let id;
+
+console.log(updateBtns);
+
+updateBtns.forEach(btn => {
+  btn.addEventListener('click', e => {
+    id = btn.id
+    console.log(id);
+  })
+})
+
 addBtn.addEventListener('click',  e=> {
   e.preventDefault();
   console.log('btn clicked');
   const formObj = {
     name: shoppingAddModal.querySelector('#addModalName').value,
-    quantity: shoppingAddModal.querySelector('#addModalQty').value,
+    // quantity: shoppingAddModal.querySelector('#addModalQty').value,
     type: shoppingAddModal.querySelector('#addModalCat').value,
     unit_of_measurement: shoppingAddModal.querySelector('#addModalUOM').value,
     par_level: shoppingAddModal.querySelector('#addModalPar').value,
-    exp_date: shoppingAddModal.querySelector('#addModalExp').value,
+    exp_date: shoppingAddModal.querySelector('#addModalExp').value || "2021-05-07",
     section_id: shoppingAddModal.querySelector('#addModalSec').value,
   }
-  console.log(formObj);
-})
+  // console.log(formObj);
+  fetch('/api/items', {
+    method:'POST',
+    body:JSON.stringify(formObj),
+    headers: {
+      'Content-Type':'application/json'
+    }
+  }).then(res=>{
+    if(res.ok){
+      location.replace('/shopping');
+      console.log('SUCCESS');
+    } else {
+      console.log('Error');
+      location.reload();
+    }
+  })
+});
+
+updateBtn.addEventListener('click',  e=> {
+  e.preventDefault();
+  console.log(e.target);
+  const formObj = {
+    quantity: shoppingUpdateModal.querySelector('#updateModalQty').value,
+  }
+  // console.log(formObj);
+  fetch(`/api/items/${id}`, {
+    method:'PUT',
+    body:JSON.stringify(formObj),
+    headers: {
+      'Content-Type':'application/json'
+    }
+  }).then(res=>{
+    if(res.ok){
+      // location.replace('/shopping');
+      console.log('SUCCESS');
+    } else {
+      console.log('Error');
+      // location.reload();
+    }
+  })
+});
+
 
 
 
@@ -38,7 +90,7 @@ const ButtonHandler = async (event) => {
     document.getElementById("updateID").defaultValue = event.target.getAttribute('data-id');
   }
 
-  //delete portion
+  delete portion
   if (event.target.hasAttribute('data-id') && action=="delete") {
     const id = event.target.getAttribute('data-id');
 
@@ -55,33 +107,34 @@ const ButtonHandler = async (event) => {
 
 };
 
-const updateFormHandler = async (event) => {
-  event.preventDefault();
-  const name = document.querySelector('#updateModalTitle').value.trim();
-  const description = document.querySelector('#updateModalText').value.trim();
-  const id = document.querySelector('#updateID').value.trim();
 
-  if (name && description) {
-    const response = await fetch(`/api/blogs/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({ name, description }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    if (response.ok) {
-      document.location.replace('/profile');
-    } else {
-      alert('Failed to update blog');
-    }
-  }
-};
+// const updateFormHandler = async (event) => {
+//   event.preventDefault();
+//   const name = document.querySelector('#updateModalTitle').value.trim();
+//   const description = document.querySelector('#updateModalText').value.trim();
+//   const id = document.querySelector('#updateID').value.trim();
+
+//   if (name && description) {
+//     const response = await fetch(`/api/blogs/${id}`, {
+//       method: 'PUT',
+//       body: JSON.stringify({ name, description }),
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     });
+//     if (response.ok) {
+//       document.location.replace('/profile');
+//     } else {
+//       alert('Failed to update blog');
+//     }
+//   }
+// };
 
 
 document
   .querySelector('.item-list')
   .addEventListener('click', ButtonHandler);
 
-document
-  .querySelector('.update-form')
-  .addEventListener('click', updateFormHandler);
+// document
+//   .querySelector('.update-form')
+//   .addEventListener('click', updateFormHandler);
