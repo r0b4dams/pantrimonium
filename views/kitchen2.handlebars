@@ -1,0 +1,40 @@
+    <!-- content here -->
+    <div class="rounded container col-10 p-2 w-100 m-3 mx-auto">
+      <div class="row">
+        <div class="rounded col-md-5 mx-3">
+            <button type="button" class="btn btn-dark rounded mx-3 p-2 mb-3 text-center align-middle btn-block">+ New Section</button>
+            {{#each items}}
+            <a href="/section/{{id}}"><div class="btn rounded mx-3 p-2 mb-3 text-center align-middle btn-block" style="background-image: url('/images/bgFridge.png');">
+              <h2>{{name}}</h2>
+            </div></a>
+            {{/each}}
+        </div>
+         
+        <div class="rounded col-md-5 mx-3 text-center panel panel-default">
+          <a href="/shopping"><button type="button" class="btn btn-dark rounded mx-3 p-2 mb-3 text-center align-middle btn-block">Generate Shopping List</button></a>
+          <!-- populate running low ingredients here -->
+          <table class="table table-borderless mx-3 mb-3 btn-block">
+            <caption>When things expire</caption>
+            <thead class="rounded" style="background-color: #ffb202;">
+              <th scope="col">name</th>
+              <th scope="col">qty</th>
+              <th scope="col">type</th>
+              <th scope="col">Expires</th>
+            </thead>
+            {{#each items }}
+              {{#each items}}
+                {{#if name}}
+            <tr class="rounded mb-1" style="background-color: #ff9a4a;">
+              <td width="35%">{{name}}</td>
+              <td width="25%" class="text-left">{{quantity}} {{unit_of_measurement}}</td>
+              <td width="25%" class="text-center">{{type}}</td>
+              <td width="15%" class="text-right">{{get_day exp_date}}</td>
+            </tr>
+                {{/if}}
+              {{/each}}
+            {{/each}}
+          </table>
+        </div>
+      </div>
+    </div>
+      
