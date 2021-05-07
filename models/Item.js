@@ -22,6 +22,7 @@ Item.init(
     quantity: {
         type: DataTypes.FLOAT,
         allowNull: false,
+        defaultValue: "0",
     },
     unit_of_measurement: {
         type: DataTypes.STRING,
@@ -34,6 +35,7 @@ Item.init(
     exp_date: {
         type: DataTypes.DATEONLY,
         allowNull: true,
+        defaultValue: "2021-05-08"
     },
     expiring_soon: {
       type: DataTypes.BOOLEAN,
