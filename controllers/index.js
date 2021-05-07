@@ -78,7 +78,7 @@ router.get('/section/:id', async (req,res) => {
         const sectionNames = sections.map(section => section.name)
         console.log({...requestedSection, sectionNames})
         // res.render("section", {sections, sectionNames, logged_in: req.session.user});
-        res.render("section", {...requestedSection, sectionNames});
+        res.render("section", {...requestedSection, sectionNames, logged_in: req.session.user});
 
          // res.render('kitchen2', {items: items, logged_in:true});
     };   
