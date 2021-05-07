@@ -3,7 +3,7 @@
    <div class="row">
       <div class="rounded mx-3 p-2 mb-3 btn-block"  style="background-color: #ffb202;">
           <div class="runningLow w-100 mx-auto p-1">
-              <span><h2>Add Section Name Here</h2></span>
+              <span><h2>{{name}}</h2></span>
               <div class="row">
     <span class="rounded col-md-5 mx-3">
       <button type="button" class="btn btn-success btn-sm" id="add" data-toggle="modal" data-target="#addModal">+Add New Item</button>
@@ -17,7 +17,7 @@
                   <span class = "col-2">{{item.name}}</span>
                   <span class = "col-2">{{item.quantity}} {{unit_of_measurement}}</span>
                   <span class = "col-2">{{item.type}}</span>
-                  <span class = "col-2">{{exp_date}}</span>                  
+                  <span class = "col-2">{{exp_date}}</span>                 
                   <span class = "col-3 text-right">
                       <button type="button" class="btn btn-primary btn-sm" id="update" data-toggle="modal" data-target="#updateModal" data-name="{{ingredient.name}}" data-qty="{{ingredient.quantity}}" data-cat="{{ingredient.category}}" data-id="{{ingredient.id}}">Update</button>
                       <button type="button" class="btn btn-danger btn-sm" id="delete" data-id="{{ingredient.id}}"><i class="far fa-trash-alt"></i></button>
@@ -51,10 +51,12 @@
             <label for="updateModalText" class="col-form-label">Quantity:</label>
             <input type="number" class="form-control" id="updateModalQty">
           </div>
+          
           <div class="form-group">
             <label for="updateModalText" class="col-form-label">Type:</label>
-            <input type="text" class="form-control" id="updateModalCat">
+            <input type="text" class="form-control" id="updateModalQty">
           </div>
+
           <div class="form-group">
             <label for="addModalExp" class="col-form-label">Expiration Date:</label>
             <input type="date" class="form-control" id="addModalExp">
@@ -83,25 +85,28 @@
         </div>
   
         <div class="modal-body">
+
           <div class="form-group">
             <label for="addModalName" class="col-form-label">Name:</label>
             <input type="text" class="form-control" id="addModalName">
             <input type="hidden" id="addID">
           </div>
+
           <div class="form-group">
             <label for="addModalQty" class="col-form-label">Quantity:</label>
             <input type="number" class="form-control" id="addModalQty">
           </div>
 
-          <div class="form-group">
-            <label for="addModalCat" class="col-form-label">Type:</label>
-            <input type="text" class="form-control" id="addModalCat">
+           <div class="form-group">
+            <label for="addModalQty" class="col-form-label">Type:</label>
+            <input type="text" class="form-control" id="addModalQty">
           </div>
 
           <div class="form-group">
             <label for="addModalUOM" class="col-form-label">Unit of Measure (gallon/lbs/oz/dozen):</label>
             <input type="text" class="form-control" id="addModalUOM">
           </div>
+
           <div class="form-group">
             <label for="addModalPar" class="col-form-label">Re-order Level:</label>
             <input type="number" class="form-control" id="addModalPar">
@@ -110,6 +115,17 @@
             <label for="addModalExp" class="col-form-label">Expiration Date:</label>
             <input type="date" class="form-control" id="addModalExp">
           </div>
+          </div>
+
+           <div class="form-group">
+            <label for="addModalSec" class="col-form-label">Where do you want this item?:</label>
+            <select id="addModalSec" name="addModalSec">
+              {{#each sectionNames as |name|}}
+              <option value={{name}}>{{name}}</option>
+              {{/each}}
+            </select>
+            </div>
+
 
         </div>
         <form class="add-form">

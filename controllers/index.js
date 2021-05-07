@@ -45,24 +45,48 @@ router.get('/kitchen', async (req,res) => {
 router.get('/section/:id', async (req,res) => {
 
     // redirect to homepage if user not logged in
-    if (!req.session.user) {
-        res.render("homepage");
+    // if (!req.session.user) {
+    //     res.render("homepage");
+    // } else {
+
+    //     // select all items associated with this section id
+    //     const dbItems = await Item.findAll({
+    //         where: {
+    //             section_id: req.params.id
+    //         }
+    //     });
+
+    //     // map to new array to parse out required info from metadata
+    //     const items = dbItems.map((gallery) => gallery.get({ plain: true }));
+    //     console.log("this is the user", req.session.user)
+    if(!req.session.user) {
+        res.render('homepage');
     } else {
-
-        // select all items associated with this section id
-        const dbItems = await Item.findAll({
+        const sectionData = await Section.findAll({
             where: {
-                section_id: req.params.id
-            }
+                user_id: req.session.user.id  // production
+            },
+            include: [{ model: Item }],
         });
+        const sections = sectionData.map(items => items.get({plain:true}));
+        
+        // console.log(sections)
 
-        // map to new array to parse out required info from metadata
-        const items = dbItems.map((gallery) => gallery.get({ plain: true }));
+        const requestedSection = sections.find(section => section.id == req.params.id)
+        // console.log(requestedSection)
 
+        const sectionNames = sections.map(section => section.name)
+        console.log({...requestedSection, sectionNames})
+        // res.render("section", {sections, sectionNames, logged_in: req.session.user});
+        res.render("section", {...requestedSection, sectionNames});
+
+         // res.render('kitchen2', {items: items, logged_in:true});
+    };   
         // put array into object so Handlebars can loop
         // if req.session.user does not exist, logged_in is falsy
-        res.render("section", {items, logged_in: req.session.user});
-    }
+       
+
+    // }
 });
 
 router.get('/kitchen2', async (req,res) => {
