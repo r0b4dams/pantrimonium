@@ -13,10 +13,9 @@ const itemData = [
     {
       name: "egg",
       type: "dairy",
-      quantity: 1,
+      quantity: 0,
       unit_of_measurement: "dozen",
       par_level: 1,
-      exp_date: "2021-05-28",
       section_id: 1
     },
     {
@@ -54,7 +53,7 @@ const itemData = [
     {
       name: "orange juice",
       type: "juice",
-      quantity: 0.5,
+      quantity: 0,
       unit_of_measurement: "gallon",
       par_level: 1,
       section_id: 1
@@ -62,7 +61,7 @@ const itemData = [
     {
       name: "bbq sauce",
       type: "condiment",
-      quantity: 1,
+      quantity: 0,
       unit_of_measurement: "bottle",
       par_level: 1,
       exp_date: "2021-06-04",
@@ -96,7 +95,7 @@ const itemData = [
     {
       name: "goldfish",
       type: "snack",
-      quantity: 1,
+      quantity: 0,
       unit_of_measurement: "package",
       par_level: 1,
       section_id: 3
@@ -115,7 +114,7 @@ const itemData = [
       quantity: 1,
       unit_of_measurement: "package",
       par_level: 1,
-      exp_date: "2021-05-28",
+      exp_date: "2020-05-28",
       section_id: 1
     },
     {
