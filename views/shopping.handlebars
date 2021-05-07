@@ -31,7 +31,7 @@
                     <span class = "col-2 text-right">{{exp_date}}</span>
                     <span class = "col-3 text-right">
                       <button type="button" class="btn btn-success btn-sm noPrint" id="update" data-toggle="modal" data-target="#updateModal" data-name="{{name}}" data-qty="{{quantity}}" data-cat="{{type}}" data-id="{{id}}">Update</button>
-                      <button type="button" class="btn btn-outline-danger btn-sm noPrint" id="hide" data-id="{{id}}"><i class="fa fa-eye"></i></button>
+                      <button type="button" class="btn btn-outline-danger btn-sm noPrint" id="hide" data-id="{{id}}"><i class="fas fa-ban"></i></button>
                     </span>
                 </div>
                       {{/if}}
@@ -127,10 +127,10 @@
             </select>
           </div>
           {{!-- <div class="add-form"> --}}
-            {{!-- <div class="modal-footer"> --}}
+            <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button id="addbtn" type="button" class="btn btn-primary">Add</button>
-            {{!-- </div> --}}
+            </div>
           {{!-- </div> --}}
         </form>
       </div>

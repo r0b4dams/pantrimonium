@@ -8,12 +8,12 @@
           <div class="btn rounded mx-3 px-2 align-middle btn-block text-wrap" style="background-image: url('images/bgFridge.png');">
             <h2>{{name}}</h2>
           </div>
-          <Table class="rounded mx-3 px-2" style="background-color: #ff9a4a;" width="100%">
+          <table class="rounded mx-3 px-2" style="background-color: #ff9a4a;" width="100%">
           {{#each items}}
             <tr>
               <td width="40%">{{name}}</td>
               <td width="35%">{{quantity}} {{unit_of_measurement}}</td>
-              <td width="25%" style="text-align:right">{{type}}</td>
+              <td width="25%" class="text-right">{{type}}</td>
             </tr>
           {{/each}}
           </Table>

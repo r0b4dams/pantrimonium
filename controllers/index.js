@@ -33,7 +33,7 @@ router.get('/kitchen', async (req,res) => {
         const sections = dbSections.map(section => section.get({plain:true}));
 
         // put array into object so Handlebars can loop
-        res.render('kitchen', { sections });
+        res.render('kitchen', { sections, logged_in:true });
     };   
 });
 
@@ -59,6 +59,21 @@ router.get('/section/:id', async (req,res) => {
         // put array into object so Handlebars can loop
         res.render("section", {items});
     }
+});
+
+router.get('/kitchen2', async (req,res) => {
+    if(!req.session.user) {
+        res.render('homepage');
+    } else {
+        const sectionData = await Section.findAll({
+            where: {
+                user_id: req.session.user.id  // production
+            },
+            include: [{ model: Item }],
+        });
+        const items = sectionData.map(items => items.get({plain:true}));
+        res.render('kitchen2', {items: items, logged_in:true});
+    };   
 });
 
 // Renders user's shopping list
@@ -95,7 +110,7 @@ router.get('/summary', async (req,res) => {
     // console.log(sectionData);
     const items = sectionData.map(items => items.get({plain:true}));
     // console.log(items)
-    res.render('summary', {items: items});
+    res.render('summary', {items: items, logged_in:true});
     };   
 });
 
