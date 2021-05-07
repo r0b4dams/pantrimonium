@@ -23,14 +23,14 @@ addBtn.addEventListener('click',  e=> {
     }
   }).then(res=>{
     if(res.ok){
-      console.log('SUCCESS')
-      location.replace('/shopping')
+      location.replace('/shopping');
+      console.log('SUCCESS');
     } else {
-      console.log('Error')
+      console.log('Error');
       location.reload();
     }
-  })
-})
+  });
+});
 
 
 
