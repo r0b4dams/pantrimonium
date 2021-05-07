@@ -12,8 +12,14 @@ module.exports = {
     var compareDate = new Date(date);
     var Difference_In_Time = compareDate.getTime() - currentDate.getTime();
     var days = Difference_In_Time / (1000 * 3600 * 24);
-    days = parseInt(days) + "days";
-    return date ? days : "-";
+    var altDays = "-";
+    if (date && days >= 0) {
+        days = parseInt(days) + "days";
+    } else if (date && days < 0) {
+        date = null;
+        altDays = "EXPIRED"
+    }
+    return date ? days : altDays;
     },
     
     ifCond: (v1, operator, v2) => {
