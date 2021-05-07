@@ -15,6 +15,21 @@ addBtn.addEventListener('click',  e=> {
     section_id: shoppingAddModal.querySelector('#addModalSec').value,
   }
   console.log(formObj);
+  fetch('/api/items', {
+    method:'POST',
+    body:JSON.stringify(formObj),
+    headers: {
+      'Content-Type':'application/json'
+    }
+  }).then(res=>{
+    if(res.ok){
+      console.log('SUCCESS')
+      location.replace('/shopping')
+    } else {
+      console.log('Error')
+      location.reload();
+    }
+  })
 })
 
 
