@@ -1,14 +1,18 @@
+require('dotenv').config();
 const router = require('express').Router();
 const bcrypt = require("bcrypt"); // pw hashing
+var nodemailer = require('nodemailer');
 const User = require('../../models/User');
 const Section = require('../../models/Section');
 
-// FOR TESTING
-// localhost:3001/auth/session
-router.get("/session", (req, res)=>{
-    console.log(req.session.user);
-    res.json(req.session.user);
-})
+// this object can send emails
+var transporter = nodemailer.createTransport({
+    service: process.env.EMAIL_SERV,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    }
+  });
 
 // a new user signs up
 // localhost:3001/auth/signup
@@ -92,11 +96,50 @@ router.post("/login", (req,res)=>{
     });
 });
 
-// an user logs out
+// a user logs out
 // localhost:3001/auth/logout
-router.get("/logout", (req,res) => {
+router.post("/logout", (req,res) => {
     req.session.destroy();
-    res.send("logged out!");
+    res.render("homepage", {logged_in: false});
+});
+
+// sends user shopping list via email
+// localhost:3001/auth/email
+router.post('/email', async function (req, res) {
+
+    // need to build a shopping list to send
+    // can get it from client or query database directly
+    // query database 
+        // get all sections
+            // include items
+                // where expiration date is today or later (use moment) OR
+                // items where qty = 0 OR
+                // items where qty < par_level
+    // put it in a string literal template
+    // put that in the mailOptions object
+
+    // options go in this object
+    const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: req.session.user.email,
+    subject: 'Your Shopping List',
+    text: 'your shopping list here'
+    };
+
+    // call this function when ready to send mail
+    // from docs:
+    // If callback argument is not set then the method returns a Promise object. 
+    // Nodemailer itself does not use Promises internally but it wraps the return into a Promise for convenience.
+    // i.e. can use async/await with try/catch and save result to var and throw err in catch
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+            res.status(400);
+        } else {
+            console.log('Email sent: ' + info.response);
+            res.status(200).send("success");
+        }
+    });
 });
 
 module.exports = router;
