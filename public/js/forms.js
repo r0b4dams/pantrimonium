@@ -59,12 +59,11 @@ updateBtn.addEventListener('click',  e=> {
     }
   }).then(res=>{
     if(res.ok){
-      // location.replace('/shopping');
       console.log('SUCCESS');
     } else {
       console.log('Error');
-      // location.reload();
     }
+    location.reload();
   })
 });
 
