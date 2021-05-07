@@ -40,12 +40,20 @@ const signupFormHandler = async (event) => {
       headers: { 'Content-Type': 'application/json' },
     });
 
-    console.log(response);
-
     if (response.ok) {
-      alert("New user created! \nPlease login");
+      const login = await fetch('/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (login.ok) {
+        document.location.replace('/kitchen'); // If successful, redirect the browser to the profile page
+      } else {
+        alert(response.statusText); // failed login
+      }
     } else {
-      alert(response.statusText);
+      alert(response.statusText); // failed to create new user
     }
   }
 };
