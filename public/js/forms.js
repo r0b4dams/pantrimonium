@@ -67,19 +67,15 @@ updateBtn.addEventListener('click',  e=> {
   })
 });
 
-
-
-
-
+function hideMe(id) {
+  var x = document.getElementById(id);
+  x.style.display = "none";
+}
 
 const ButtonHandler = async (event) => {
   let action = "";
   if (event.target.hasAttribute('id')) {
     action = event.target.getAttribute('id');
-  }
-  if (action =="hide") {
-    var x = document.getElementById(event.target.getAttribute('data-id'));
-    x.style.display = "none";
   }
   if (event.target.hasAttribute('data-name') && action=="update") {
     console.log("updating");
