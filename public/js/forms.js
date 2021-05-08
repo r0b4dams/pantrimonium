@@ -2,17 +2,9 @@ const shoppingAddModal = document.querySelector('#newShoppingItemForm');
 const addBtn = document.querySelector('#addbtn');
 const shoppingUpdateModal = document.querySelector('#updateShoppingItemForm');
 const updateBtn = document.querySelector('#updatebtn');
-const updateBtns = document.querySelectorAll('.updateBtn')
+const updateBtns = document.querySelectorAll('.updateBtn');
 let id;
 
-console.log(updateBtns);
-
-updateBtns.forEach(btn => {
-  btn.addEventListener('click', e => {
-    id = btn.id
-    console.log(id);
-  })
-})
 
 addBtn.addEventListener('click',  e=> {
   e.preventDefault();
@@ -43,6 +35,15 @@ addBtn.addEventListener('click',  e=> {
     }
   })
 });
+
+console.log(updateBtns);
+
+updateBtns.forEach(btn => {
+  btn.addEventListener('click', e => {
+    id = btn.id
+    console.log(id);
+  })
+})
 
 updateBtn.addEventListener('click',  e=> {
   e.preventDefault();
