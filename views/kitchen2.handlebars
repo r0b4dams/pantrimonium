@@ -1,5 +1,5 @@
     <!-- content here -->
-    <div class="rounded w-75 mx-auto my-3">
+    <div class="rounded container mx-auto my-3">
       <div class="row col-12">
         <div class="rounded col-md-6">
             <button type="button" class="btn btn-dark rounded mx-3 p-2 mb-3 text-center align-middle btn-block">My Sections</button>
@@ -13,17 +13,18 @@
         <div class="rounded col-md-6">
           <a href="/shopping"><button type="button" class="btn btn-dark rounded mx-3 p-2 mb-3 text-center align-middle btn-block">Generate Shopping List</button></a>
           <!-- populate running low ingredients here -->
-          <table class="table table-borderless mx-3 mb-3 text-center align-middle w-100">
+          <table class="table table-borderless mx-3 mb-20 text-center align-middle w-100 table-hover" style="background-color: #ff9a4a;">
             <thead class="rounded" style="background-color: #ffb202;">
               <th scope="col">name</th>
               <th scope="col" class="text-left">qty</th>
               <th scope="col">type</th>
               <th scope="col class="text-right"">Expires</th>
             </thead>
+            <tbody>
             {{#each items }}
               {{#each items}}
                 {{#if name}}
-            <tr class="rounded mb-1" style="background-color: #ff9a4a;">
+            <tr>
               <td width="35%">{{name}}</td>
               <td width="25%" class="text-left">{{quantity}} {{unit_of_measurement}}</td>
               <td width="25%" class="text-center">{{type}}</td>
@@ -32,6 +33,7 @@
                 {{/if}}
               {{/each}}
             {{/each}}
+            </tbody>
           </table>
         </div>
       </div>

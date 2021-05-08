@@ -1,13 +1,13 @@
    
     <!-- content here -->
-    <div class="w-75 my-3 mx-auto">
+    <div class="container my-3 mx-auto">
       <div class="row col-12">
       {{#each items}}
-        <div class="rounded col-md-4">
+        <div class="rounded col-md-4 col-sm-12">
           <div class="btn rounded mx-3 px-2 align-middle btn-block text-wrap" style="background-image: url('images/bgFridge.png');">
             <h2>{{name}}</h2>
           </div>
-          <table class="rounded mx-3 px-2" style="background-color: #ff9a4a;" width="100%">
+          <table class="rounded mx-3 px-2 table-hover" style="background-color: #ff9a4a;" width="100%">
           {{#each items}}
             <tr>
               <td width="40%">{{name}}</td>

@@ -1,44 +1,38 @@
-    <div class="rounded container col-10 p-2 w-100 m-3 mx-auto item-list">
-        <div class="row">
-          <div class="rounded col-md-5 mx-3">
-            {{!-- email button --}}
-            <button id="emailBtn" type="button" class="btn btn-dark rounded mx-3 p-2 mb-3 text-center align-middle btn-block noPrint">Email me this list</button>
-          </div>
-          <div class="rounded col-md-5 mx-3 text-center">
-            <button type="button" class="btn btn-dark rounded mx-3 p-2 mb-3 text-center align-middle btn-block noPrint" onclick="window.print();">Print this List</button>
-          </div>  
+    <div class="container my-3 mx-auto ">
+      <div class="row col-12">
+        <div class="rounded col-md-6">
+          {{!-- email button --}}
+          <button id="emailBtn" type="button" class="btn btn-dark rounded mx-3 p-2 mb-3 text-center align-middle btn-block noPrint">Email me this list</button>
         </div>
-        <div class="row">
-            <div class="rounded mx-3 p-2 mb-3 btn-block"  style="background-color: #ffb202;">
-                <div class="runningLow w-100 mx-auto p-1">
-
-                    <h2>Shopping List</h2>
-
-                    <span>
-                        <button type="button" class="btn btn-primary btn-sm noPrint" id="add" data-toggle="modal" data-target="#addModal">+Add to List</button>
-                    </span>
-                </div>
-
-                {{#each items }}
-                    {{#each items}}
-                      {{#if (ifCond quantity '<=' par_level true)}}
-                <div style="background-color: #ff9a4a;" class="row rounded my-2 w-100 mx-auto p-1 col-12" id="{{id}}">
-                    <input type="checkbox"><span class = "col-3">{{name}}</span>
-                    <span class = "col-3">{{quantity}} of {{par_level}} {{unit_of_measurement}}</span>
-                    <span class = "col-1">{{type}}</span>
-                    <span class = "col-2 text-right">{{exp_date}}</span>
-                    <span class = "col-3 text-right">
-                      <button type="button" class="btn btn-success btn-sm noPrint updateBtn" id={{id}} data-toggle="modal" data-target="#updateModal" data-name="{{name}}" data-qty="{{quantity}}" data-cat="{{type}}" data-id={{id}}>Update</button>
-                      <button type="button" class="btn btn-outline-danger btn-sm noPrint" id="hide" data-id="{{id}}"><i class="fas fa-ban"></i></button>
-                    </span>
-                </div>
-                      {{/if}}
-                    {{/each}}
-                {{/each}}
-              </div>
-            </div>
-        </div>    
-  </div>
+        <div class="rounded col-md-6 text-center">
+          <button type="button" class="btn btn-dark rounded mx-3 p-2 mb-3 text-center align-middle btn-block noPrint" onclick="window.print();">Print this List</button>
+        </div>  
+      </div>
+      <div class="row col-12">
+        <div class="rounded mx-3 p-2 mb-3 col-12 item-list"  style="background-color: #ffb202;">
+          <div class="runningLow w-100 mx-auto p-1">
+            <h2>Shopping List</h2>
+            <span><button type="button" class="btn btn-primary btn-sm noPrint" id="add" data-toggle="modal" data-target="#addModal">+Add to List</button></span>
+          </div>
+          {{#each items }}
+            {{#each items}}
+              {{#if (ifCond quantity '<=' par_level true)}}
+          <div style="background-color: #ff9a4a;" class="row rounded my-2 w-100 mx-auto p-1 col-12" id="{{id}}">
+            <h2 class="checkbox"><i class="far fa-square" data-fa-transform="grow-6 down-5"></i></h2><span class = "col-3">{{name}}</span>
+            <span class = "col-3">{{quantity}} of {{par_level}} {{unit_of_measurement}}</span>
+            <span class = "col-1 noPrint">{{type}}</span>
+            <span class = "col-2 text-right text-nowrap">{{exp_date}}</span>
+            <span class = "col-3 text-right px-0 noPrint">
+              <button type="button" class="btn btn-success btn-sm updateBtn" id={{id}} data-toggle="modal" data-target="#updateModal" data-name="{{name}}" data-qty="{{quantity}}" data-cat="{{type}}" data-id={{id}}>Update</button>
+              <button type="button" class="btn btn-outline-danger btn-sm " onclick="hideMe({{id}})"><i class="fas fa-ban"></i></button>
+            </span>
+          </div>
+              {{/if}}
+            {{/each}}
+          {{/each}}
+        </div>
+      </div>
+    </div>    
 
   <!-- Update modal -->
   <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
