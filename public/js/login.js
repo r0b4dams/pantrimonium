@@ -16,9 +16,8 @@ const loginFormHandler = async (event) => {
     console.log(response);
 
     if (response.ok) {
-      alert("login successful!");
       // If successful, redirect the browser to the profile page
-      document.location.replace('/kitchen');
+      document.location.replace('/kitchen2');
     } else {
       alert(response.statusText);
     }
@@ -48,7 +47,7 @@ const signupFormHandler = async (event) => {
       });
 
       if (login.ok) {
-        document.location.replace('/kitchen'); // If successful, redirect the browser to the profile page
+        document.location.replace('/kitchen2'); // If successful, redirect the browser to the profile page
       } else {
         alert(response.statusText); // failed login
       }

@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Pantrimonium - Homepage</title>
 </head>
 
 <body style="background-color: #ffcc57;">
-
-    <h1>Pantrimonium!</h1>
+<a id="top">
+    <h1 class="text-center noPrint">Pantrimonium!</h1>
 
     <nav class="navbar navbar-expand-lg navbar-light">
 
@@ -25,7 +25,7 @@
           <ul class="navbar-nav mr-auto">
             {{#if logged_in}}
               <li class="nav-item">
-                <a class="nav-link" href="/kitchen">My Kitchen</a>
+                <a class="nav-link" href="/kitchen2">My Kitchen</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="/shopping">My Shopping List</a>
@@ -50,9 +50,10 @@
     <!-- content here -->
     {{{ body }}}
 
-    <footer class="pos-f-t no-gutters" >
-        <nav class="navbar fixed-bottom justify-content-center" style="background-color: #ff8201;">
-            <a href="https://github.com/rickrocero/Pantrimonium" target="_blank">Pantrimonium on Github</a>
+    <footer class="pos-f-t no-gutters noPrint" >
+        <nav class="navbar fixed-bottom runningLow" style="background-color: #ff8201;">
+            <span><a href="#top"><i class="fas fa-angle-double-up mobShow"></i></a></span>
+            <a href="https://github.com/comatosino/Pantrimonium" target="_blank"><span>Pantrimonium on Github</span></a>
         </nav>
     </footer>
     {{#if logged_in}}

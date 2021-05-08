@@ -45,24 +45,33 @@ router.get('/kitchen', async (req,res) => {
 router.get('/section/:id', async (req,res) => {
 
     // redirect to homepage if user not logged in
-    if (!req.session.user) {
-        res.render("homepage");
+    if(!req.session.user) {
+        res.render('homepage');
     } else {
 
-        // select all items associated with this section id
-        const dbItems = await Item.findAll({
+        // get all sections associated with user
+        const sectionData = await Section.findAll({
             where: {
-                section_id: req.params.id
-            }
+                user_id: req.session.user.id  // production
+            },
+            include: [{ model: Item }],
         });
 
-        // map to new array to parse out required info from metadata
-        const items = dbItems.map((gallery) => gallery.get({ plain: true }));
+        // map out simplified array of all sections and associated items 
+        const sections = sectionData.map(items => items.get({plain:true}));
 
-        // put array into object so Handlebars can loop
-        // if req.session.user does not exist, logged_in is falsy
-        res.render("section", {items, logged_in: req.session.user});
-    }
+        // get section according to url params
+        const requestedSection = sections.find(section => section.id == req.params.id);
+
+        // save all section names and id#s in an array
+        const sectionInfo = sections.map(function (section) {
+            return {
+                    name: section.name,
+                      id: section.id
+                    }
+        });
+        res.render("section", {...requestedSection, sectionInfo, logged_in: req.session.user.id});
+    };   
 });
 
 router.get('/kitchen2', async (req,res) => {

@@ -7,9 +7,9 @@ Item.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
@@ -18,26 +18,27 @@ Item.init(
     type: {
       type: DataTypes.STRING,
       allowNull: true,
+      defaultValue: "",
     },
     quantity: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      defaultValue: 0,
     },
     unit_of_measurement: {
-        type: DataTypes.STRING,
-        allowNull: true,
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: "",
     },
     par_level: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
     },
     exp_date: {
-        type: DataTypes.DATEONLY,
-        allowNull: true,
-    },
-    expiring_soon: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.DATEONLY,
       allowNull: true,
+      defaultValue: null,
     },
     // Store a reference of the `id` of the `section` the item is going in 
     section_id: {
