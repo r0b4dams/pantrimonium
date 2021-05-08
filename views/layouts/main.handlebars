@@ -12,8 +12,8 @@
 </head>
 
 <body style="background-color: #ffcc57;">
-
-    <h1 class="text-center">Pantrimonium!</h1>
+<a id="top">
+    <h1 class="text-center noPrint">Pantrimonium!</h1>
 
     <nav class="navbar navbar-expand-lg navbar-light">
 
@@ -50,9 +50,10 @@
     <!-- content here -->
     {{{ body }}}
 
-    <footer class="pos-f-t no-gutters" >
-        <nav class="navbar fixed-bottom justify-content-center" style="background-color: #ff8201;">
-            <a href="https://github.com/comatosino/Pantrimonium" target="_blank">Pantrimonium on Github</a>
+    <footer class="pos-f-t no-gutters noPrint" >
+        <nav class="navbar fixed-bottom runningLow" style="background-color: #ff8201;">
+            <span><a href="#top"><i class="fas fa-angle-double-up mobShow"></i></a></span>
+            <a href="https://github.com/comatosino/Pantrimonium" target="_blank"><span>Pantrimonium on Github</span></a>
         </nav>
     </footer>
     {{#if logged_in}}

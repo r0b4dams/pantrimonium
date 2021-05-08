@@ -22,9 +22,19 @@ nav {
     justify-content: space-between;
 }
 
-input[type=checkbox]
+.checkbox
 {
   display: none;
+}
+
+.mobShow {
+  visibility:hidden;
+}
+
+@media (max-width:768px){
+  .mobShow {
+    visibility:visible;
+  }
 }
 
 @media print {
@@ -38,7 +48,7 @@ input[type=checkbox]
     .noPrint{
         display:none;
     }
-    input[type=checkbox]
+    .checkbox
       {
         display: block;
       }
