@@ -1,141 +1,143 @@
 <!-- content here My Refrigerator -->
- <div class="rounded container col-10 p-2 w-100 m-3 mx-auto">
-   <div class="row">
-      <div class="rounded mx-3 p-2 mb-3 btn-block"  style="background-color: #ffb202;">
-          <div class="runningLow w-100 mx-auto p-1">
-              <span><h2>{{name}}</h2></span>
-              <div class="row">
-    <span class="rounded col-md-5 mx-3">
-      <button type="button" class="btn btn-success btn-sm" id="add" data-toggle="modal" data-target="#addModal">+Add New Item</button>
-      </span> 
-  </div>
-          </div>
-          <h6>
-          <!-- populate section items here -->           
-            {{#each items as |item|}}
-                <div style="background-color: #ff9a4a;" class="row rounded my-2 runningLow w-100 mx-auto p-1">
-                  <span class = "col-2">{{item.name}}</span>
-                  <span class = "col-2">{{item.quantity}} {{unit_of_measurement}}</span>
-                  <span class = "col-2">{{item.type}}</span>
-                  <span class = "col-2">{{exp_date}}</span>                 
-                  <span class = "col-3 text-right">
-                      <button type="button" class="btn btn-primary btn-sm" id="update" data-toggle="modal" data-target="#updateModal" data-name="{{ingredient.name}}" data-qty="{{ingredient.quantity}}" data-cat="{{ingredient.category}}" data-id="{{ingredient.id}}">Update</button>
-                      <button type="button" class="btn btn-danger btn-sm" id="delete" data-id="{{ingredient.id}}"><i class="far fa-trash-alt"></i></button>
-                    </span>
-                 </div>
-            {{/each}}
-          </h6>
+<div class="rounded container col-10 p-2 w-100 m-3 mx-auto">
+  <div class="row" id="section-container">
+    <div class="rounded mx-3 p-2 mb-3 btn-block" style="background-color: #ffb202;">
+      <div class="runningLow w-100 mx-auto p-1">
+        <span>
+          <h2>{{name}}</h2>
+        </span>
+        <div class="row">
+          <span class="rounded col-md-5 mx-3">
+            <button type="button" class="btn btn-success btn-sm" id="add" data-toggle="modal"
+              data-target="#addModal">+Add New Item</button>
+          </span>
         </div>
       </div>
-  </div>    
+      <h6>
+        <!-- populate section items here -->
+        {{#each items as |item|}}
+        <div style="background-color: #ff9a4a;" class="row rounded my-2 runningLow w-100 mx-auto p-1">
+          <span class="col-2">{{item.name}}</span>
+          <span class="col-2">{{item.quantity}} {{unit_of_measurement}}</span>
+          <span class="col-2">{{item.type}}</span>
+          <span class="col-2">{{exp_date}}</span>
+          <span class="col-3 text-right">
+            <button type="button" class="btn btn-primary btn-sm update-btn" data-toggle="modal" id={{id}}
+              data-target="#updateModal" data-name="{{ingredient.name}}" data-qty="{{ingredient.quantity}}"
+              data-cat="{{ingredient.category}}" data-id={{id}}>Update</button>
+            <button type="button" class="btn btn-danger btn-sm delete" data-id="{{ingredient.id}}"><i
+                class="far fa-trash-alt"></i></button>
+          </span>
+        </div>
+        {{/each}}
+      </h6>
+    </div>
+  </div>
+</div>
 </div>
 
 <!-- update modal -->
-  <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="ModalLabel">Update Item</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-  
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Update Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form class="update-form" id="update-item-form">
         <div class="modal-body">
-          <div class="form-group">
+          {{!-- <div class="form-group">
             <label for="updateModalTitle" class="col-form-label">Name:</label>
             <input type="text" class="form-control" id="updateModalName">
             <input type="hidden" id="updateID">
-          </div>
+          </div> --}}
           <div class="form-group">
             <label for="updateModalText" class="col-form-label">Quantity:</label>
-            <input type="number" class="form-control" id="updateModalQty">
+            <input type="number" class="form-control" id="updateModalQty2">
           </div>
-          
-          <div class="form-group">
+
+          {{!-- <div class="form-group">
             <label for="updateModalText" class="col-form-label">Type:</label>
             <input type="text" class="form-control" id="updateModalQty">
-          </div>
+          </div> --}}
 
           <div class="form-group">
             <label for="addModalExp" class="col-form-label">Expiration Date:</label>
-            <input type="date" class="form-control" id="addModalExp">
+            <input type="date" class="form-control" id="addModalExp2">
           </div>
 
         </div>
-        <form class="update-form">
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
-          </div>
-        </form>
-      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="update-btn" type="submit" class="btn btn-primary" data-dismiss="modal">Update</button>
+        </div>
+      </form>
     </div>
   </div>
-  
-  <!-- Add modal -->  
-  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addModalLabel">Add Item</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-  
-        <div class="modal-body">
+</div>
 
+<!-- Add modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">Add Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+        <form id="new-section-item-form" class="modal-body">
           <div class="form-group">
-            <label for="addModalName" class="col-form-label">Name:</label>
-            <input type="text" class="form-control" id="addModalName">
+            <label for="addModalName3" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="addModalName3">
             <input type="hidden" id="addID">
           </div>
 
           <div class="form-group">
-            <label for="addModalQty" class="col-form-label">Quantity:</label>
-            <input type="number" class="form-control" id="addModalQty">
-          </div>
-
-           <div class="form-group">
-            <label for="addModalQty" class="col-form-label">Type:</label>
-            <input type="text" class="form-control" id="addModalQty">
+            <label for="addModalQty3" class="col-form-label">Quantity:</label>
+            <input type="number" class="form-control" id="addModalQty3">
           </div>
 
           <div class="form-group">
-            <label for="addModalUOM" class="col-form-label">Unit of Measure (gallon/lbs/oz/dozen):</label>
-            <input type="text" class="form-control" id="addModalUOM">
+            <label for="addModalCat3" class="col-form-label">Type:</label>
+            <input type="text" class="form-control" id="addModalCat3">
           </div>
 
           <div class="form-group">
-            <label for="addModalPar" class="col-form-label">Re-order Level:</label>
-            <input type="number" class="form-control" id="addModalPar">
-          </div>
-          <div class="form-group">
-            <label for="addModalExp" class="col-form-label">Expiration Date:</label>
-            <input type="date" class="form-control" id="addModalExp">
-          </div>
+            <label for="addModalUOM3" class="col-form-label">Unit of Measure (gallon/lbs/oz/dozen):</label>
+            <input type="text" class="form-control" id="addModalUOM3">
           </div>
 
-           <div class="form-group">
-            <label for="addModalSec" class="col-form-label">Where do you want this item?:</label>
-            <select id="addModalSec" name="addModalSec">
+          <div class="form-group">
+            <label for="addModalPar3" class="col-form-label">Re-order Level:</label>
+            <input type="number" class="form-control" id="addModalPar3">
+          </div>
+          <div class="form-group">
+            <label for="addModalExp3" class="col-form-label">Expiration Date:</label>
+            <input type="date" class="form-control" id="addModalExp3">
+          </div>
+          {{!-- </div> --}}
+          <div class="form-group">
+            <label for="addModalSec3" class="col-form-label">Where do you want this item?:</label>
+            <select id="addModalSec3" name="addModalSec3">
               {{#each sectionNames as |name|}}
               <option value={{name}}>{{name}}</option>
               {{/each}}
             </select>
-            </div>
-
-
-        </div>
-        <form class="add-form">
+          </div>
+          {{!-- <div class="add-form"> --}}
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+            <button id="add-btn" type="button" class="btn btn-success">Add</button>
           </div>
+          {{!-- </div> --}}
         </form>
-      </div>
-    </div>
   </div>
+</div>
+</div>
 
-<script src="/js/forms.js"></script>
+<script src="/js/section2.js"></script>

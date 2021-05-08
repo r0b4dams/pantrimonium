@@ -15,7 +15,7 @@ addBtn.addEventListener('click',  e=> {
     type: shoppingAddModal.querySelector('#addModalCat').value,
     unit_of_measurement: shoppingAddModal.querySelector('#addModalUOM').value,
     par_level: shoppingAddModal.querySelector('#addModalPar').value,
-    exp_date: shoppingAddModal.querySelector('#addModalExp').value || "2021-05-07",
+    exp_date: shoppingAddModal.querySelector('#addModalExp').value || null,
     section_id: shoppingAddModal.querySelector('#addModalSec').value,
   }
   // console.log(formObj);
@@ -138,3 +138,31 @@ document
 // document
 //   .querySelector('.update-form')
 //   .addEventListener('click', updateFormHandler);
+
+
+// document.querySelector("#update-form-route").addEventListener("submit", function(e) {
+//   e.preventDefault();
+//   console.log(e.target);
+//   const formObj = {
+//     quantity: document.querySelector('#updateModalQty2').value,
+//     exp_date: document.querySelector('#addModalExp2').value,
+//   }
+
+//   console.log("*****id",id);
+
+//   // console.log(formObj);
+//   fetch(`/api/items/${id}`, {
+//     method:'PUT',
+//     body:JSON.stringify(formObj),
+//     headers: {
+//       'Content-Type':'application/json'
+//     }
+//   }).then(res=>{
+//     if(res.ok){
+//       console.log('SUCCESS', res);
+//     } else {
+//       console.log('Error');
+//     }
+//     location.reload();
+//   })
+// });
