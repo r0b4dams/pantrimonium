@@ -46,7 +46,7 @@ router.get('/section/:id', async (req,res) => {
                       id: section.id
                     }
         });
-        res.render("section", {...requestedSection, sectionInfo, logged_in: req.session.user.id});
+        res.render("section", {requestedSection, sectionInfo, logged_in: req.session.user.id});
     };   
 });
 
