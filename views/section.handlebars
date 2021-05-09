@@ -3,7 +3,7 @@
     <div class="rounded mx-3 p-2 mb-3 btn-block"  style="background-color: #ffb202;">
       <div class="w-100 mx-auto p-1 flex-wrap">
 
-        <span><h2 id="section-head" data-id="{{id}}">{{name}}</h2></span>
+        <span><h2 id="section-head" data-id={{requestedSection.id}}>{{requestedSection.name}}</h2></span>
 
           <span class="float-right">
             <button type="button" class="btn btn-primary btn-sm" id="add" data-toggle="modal" data-target="#add-item-modal">+Add New Item</button>
@@ -12,18 +12,31 @@
 
       <!-- populate section items here --> 
       <h6>          
-        {{#each items as |item|}}
+        {{#each requestedSection.items as |item|}}
           <div style="background-color: #ff9a4a;" class="row rounded my-2 runningLow w-100 mx-auto p-1">
 
-            <span class = "col-2">{{item.name}}</span>
-            <span class = "col mobNoShow">{{item.quantity}} {{unit_of_measurement}}</span>
-            <span class = "col mobNoShow">{{item.type}}</span>
+            <span class = "col-2">{{name}}</span>
+            <span class = "col mobNoShow">{{quantity}} {{unit_of_measurement}}</span>
+            <span class = "col mobNoShow">{{par_level}}</span>
+            <span class = "col mobNoShow">{{type}}</span>
             <span class = "col mobNoShow">{{exp_date}}</span>  
 
             <span class = "col text-right px-0 text-nowrap">
 
               {{!-- row update button --}}
-              <button type="button" class="btn btn-success btn-sm update-btn" data-id={{id}} id={{id}} data-toggle="modal" data-target="#update-item-modal" data-name="{{name}}" data-qty="{{quantity}}" data-cat="{{type}}">Update</button>
+              <button type="button" 
+              class="btn btn-success btn-sm update-btn" 
+              data-toggle="modal" 
+              data-target="#update-item-modal" 
+              data-id={{id}} 
+              data-name='{{name}}' 
+              data-qty={{quantity}}
+              data-uom={{unit_of_measurement}}
+              data-parlvl={{par_level}} 
+              data-exp={{exp_date}} 
+              data-cat={{type}}> 
+              Update
+              </button>
 
               {{!-- row delete button --}}
               <button type="button" class="btn btn-danger btn-sm delete-btn" data-id={{id}}><i class="far fa-trash-alt" data-id={{id}}></i></button>
@@ -41,15 +54,17 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="ModalLabel">update inventory</h5>
+
+          {{!-- inject name here when update is clicked --}}
+          <h5 class="modal-title" id="update-modal-label">update [item name]</h5>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
   
         <form id="update-item-form" class="modal-body">
-          <div class="form-group">
+          {{!-- <div class="form-group">
             <label for="update-modal-name" class="col-form-label">description:</label>
             <input type="text" class="form-control" id="update-modal-name">
-          </div>
+          </div> --}}
 
           <div class="form-group">
             <label for="update-modal-cat" class="col-form-label">category:</label>
@@ -64,8 +79,14 @@
           <div class="form-group">
             <label for="update-modal-section" class="col-form-label">section:</label>
             <select id="update-modal-section" name="update-modal-section">
-              {{#each sectionInfo as |sectionInfo|}}
-              <option value="{{sectionInfo.id}}">{{sectionInfo.name}}</option>
+              {{#each sectionInfo as |section|}}
+              {{!-- use ../ to access the other object's properties in order to compare --}}
+              {{!-- if current section matches array section, add default select--}}
+                {{#if (ifCond ../requestedSection.name '===' section.name true)}}
+                  <option value="{{section.id}}" selected>{{section.name}}</option>
+                {{else}}
+                  <option value="{{section.id}}">{{section.name}}</option>
+                {{/if}}
               {{/each}}
             </select>
           </div>
@@ -99,7 +120,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addModalLabel">add new item to {{name}}</h5>
+        <h5 class="modal-title" id="addModalLabel">add new item to {{requestedSection.name}}</h5>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
 
