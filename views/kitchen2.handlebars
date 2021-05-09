@@ -1,10 +1,10 @@
     <!-- content here -->
-    <div class="rounded w-75 mx-auto my-3">
+    <div class="rounded container mx-auto my-3">
       <div class="row col-12">
         <div class="rounded col-md-6">
-            <button type="button" class="btn btn-dark rounded mx-3 p-2 mb-3 text-center align-middle btn-block">My Sections</button>
+            <button type="button" class="btn btn-dark rounded mx-3 p-2 mb-3 text-center align-middle btn-block" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true">My Sections</button>
             {{#each items}}
-            <a href="/section/{{id}}" class="nav-link"><div class="btn rounded mx-3 mb-3 text-center align-middle btn-block" style="background-image: url('/images/bgFridge.png');">
+            <a href="/section/{{id}}" class="nav-link collapse show" id="collapseExample"><div class="btn rounded mx-3 mb-3 text-center align-middle btn-block" style="background-image: url('/images/bgFridge.png');">
               <h2>{{name}}</h2>
             </div></a>
             {{/each}}
@@ -13,25 +13,27 @@
         <div class="rounded col-md-6">
           <a href="/shopping"><button type="button" class="btn btn-dark rounded mx-3 p-2 mb-3 text-center align-middle btn-block">Generate Shopping List</button></a>
           <!-- populate running low ingredients here -->
-          <table class="table table-borderless mx-3 mb-3 text-center align-middle w-100">
-            <thead class="rounded" style="background-color: #ffb202;">
+          <table class="table table-borderless mx-3 mb-1 text-center align-middle w-100 table-hover" style="background-color: #ff9a4a;">
+            {{!-- <thead class="rounded" style="background-color: #ffb202; mobNoShow">
               <th scope="col">name</th>
               <th scope="col" class="text-left">qty</th>
-              <th scope="col">type</th>
+              <th scope="col mobNoShow">type</th>
               <th scope="col class="text-right"">Expires</th>
-            </thead>
+            </thead> --}}
+            <tbody >
             {{#each items }}
               {{#each items}}
                 {{#if name}}
-            <tr class="rounded mb-1" style="background-color: #ff9a4a;">
-              <td width="35%">{{name}}</td>
-              <td width="25%" class="text-left">{{quantity}} {{unit_of_measurement}}</td>
-              <td width="25%" class="text-center">{{type}}</td>
-              <td width="15%" class="text-right">{{get_day exp_date}}</td>
+            <tr>
+              <td class="text-left col">{{name}}</td>
+              <td class="text-left col">{{quantity}} {{unit_of_measurement}}</td>
+              <td class="text-center mobNoShow col">{{type}}</td>
+              <td class="text-right col">{{get_day exp_date}}</td>
             </tr>
                 {{/if}}
               {{/each}}
             {{/each}}
+            </tbody>
           </table>
         </div>
       </div>
