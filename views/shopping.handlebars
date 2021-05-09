@@ -10,19 +10,19 @@
       </div>
       <div class="row col-12">
         <div class="rounded mx-3 p-2 mb-3 col-12 item-list"  style="background-color: #ffb202;">
-          <div class="runningLow w-100 mx-auto p-1">
+          <div class="w-100 mx-auto p-1 flex-wrap">
             <h2>Shopping List</h2>
-            <span><button type="button" class="btn btn-primary btn-sm noPrint" id="add" data-toggle="modal" data-target="#addModal">+Add to List</button></span>
+            <span class="float-right"><button type="button" class="btn btn-primary btn-sm noPrint" id="add" data-toggle="modal" data-target="#addModal">+Add to List</button></span>
           </div>
           {{#each items }}
             {{#each items}}
               {{#if (ifCond quantity '<=' par_level true)}}
           <div style="background-color: #ff9a4a;" class="row rounded my-2 w-100 mx-auto p-1 col-12" id="{{id}}">
-            <h2 class="checkbox"><i class="far fa-square" data-fa-transform="grow-6 down-5"></i></h2><span class = "col-3">{{name}}</span>
-            <span class = "col-3">{{quantity}} of {{par_level}} {{unit_of_measurement}}</span>
-            <span class = "col-1 noPrint">{{type}}</span>
-            <span class = "col-2 text-right text-nowrap">{{exp_date}}</span>
-            <span class = "col-3 text-right px-0 noPrint">
+            <h2 class="checkbox"><i class="far fa-square" data-fa-transform="grow-6 down-5"></i></h2><span class = "col">{{name}}</span>
+            <span class = "col mobNoShow">{{quantity}} of {{par_level}} {{unit_of_measurement}}</span>
+            <span class = "col noPrint mobNoShow">{{type}}</span>
+            <span class = "col text-right text-nowrap mobNoShow">{{exp_date}}</span>
+            <span class = "col text-right px-0 text-nowrap noPrint">
               <button type="button" class="btn btn-success btn-sm updateBtn" id={{id}} data-toggle="modal" data-target="#updateModal" data-name="{{name}}" data-qty="{{quantity}}" data-cat="{{type}}" data-id={{id}}>Update</button>
               <button type="button" class="btn btn-outline-danger btn-sm " onclick="hideMe({{id}})"><i class="fas fa-ban"></i></button>
             </span>
