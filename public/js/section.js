@@ -44,7 +44,7 @@ rowDeleteBtns.forEach(btn => {
 // update item data
 updateItemBtn.addEventListener('click',  e=> {
     e.preventDefault();
-  
+
     // collect input data from modal form
     const inputDesc = updateItemForm.querySelector('#update-modal-name').value.trim();
     const inputCat = updateItemForm.querySelector('#update-modal-cat').value.trim();
