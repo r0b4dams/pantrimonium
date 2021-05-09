@@ -31,9 +31,16 @@ nav {
   visibility:hidden;
 }
 
+.mobNoShow {
+  display:block;
+}
+
 @media (max-width:768px){
   .mobShow {
     visibility:visible;
+  }
+  .mobNoShow {
+    display:none;
   }
 }
 
