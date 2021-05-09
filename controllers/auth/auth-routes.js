@@ -107,23 +107,18 @@ router.post("/logout", (req,res) => {
 // localhost:3001/auth/email
 router.post('/email', async function (req, res) {
 
-    // need to build a shopping list to send
-    // can get it from client or query database directly
-    // query database 
-        // get all sections
-            // include items
-                // where expiration date is today or later (use moment) OR
-                // items where qty = 0 OR
-                // items where qty < par_level
-    // put it in a string literal template
-    // put that in the mailOptions object
+    // make a plain text list from the array sent by the client
+    let textList = "";
+    req.body.forEach(function(item) {
+        textList += item + "\n";
+    });
 
     // options go in this object
     const mailOptions = {
     from: process.env.EMAIL_USER,
     to: req.session.user.email,
     subject: 'Your Shopping List',
-    text: 'your shopping list here'
+    text: textList,
     };
 
     // call this function when ready to send mail
