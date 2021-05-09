@@ -19,11 +19,11 @@ rowUpdateBtns.forEach(btn => {
 
         // update form inputs to default to the item's current state
         // references data attributes added to html via handlebars
-        document.querySelector("#update-modal-label").textContent =  "update " + e.target.getAttribute("data-name");
+        document.querySelector("#update-modal-label").textContent =  "Update " + e.target.getAttribute("data-name");
         updateItemForm.querySelector('#update-modal-cat').value = e.target.getAttribute("data-cat") || null;
         updateItemForm.querySelector('#update-modal-qty').value = parseInt(e.target.getAttribute("data-qty")) || 0;
-        updateItemForm.querySelector('#update-modal-par').value = parseInt(e.target.getAttribute("data-parlvl")) || null;
-        updateItemForm.querySelector('#update-modal-uom').value = e.target.getAttribute("data-uom") || null;
+        updateItemForm.querySelector('#update-modal-par').value = parseInt(e.target.getAttribute("data-parlvl")) || 0;
+        updateItemForm.querySelector('#update-modal-uom').value = e.target.getAttribute("data-uom") || "total";
         updateItemForm.querySelector('#update-modal-exp').value = e.target.getAttribute("data-exp") || null;
     });
 });
@@ -55,10 +55,10 @@ updateItemBtn.addEventListener('click',  e=> {
     e.preventDefault();
 
     // collect input data from modal form
-    const inputCat = updateItemForm.querySelector('#update-modal-cat').value.trim() || " ";
+    const inputCat = updateItemForm.querySelector('#update-modal-cat').value.trim() || null;
     const inputQty  = updateItemForm.querySelector('#update-modal-qty').value || 0;
     const inputPar = updateItemForm.querySelector('#update-modal-par').value || 0;
-    const inputUOM = updateItemForm.querySelector('#update-modal-uom').value.trim()|| " ";
+    const inputUOM = updateItemForm.querySelector('#update-modal-uom').value.trim()|| "total";
     const inputExp = updateItemForm.querySelector('#update-modal-exp').value || null;      
     const inputSection = updateItemForm.querySelector('#update-modal-section').value;  // current section by dafault
 
@@ -101,14 +101,14 @@ addItemBtn.addEventListener('click',  e=> {
     // collect input data from modal form
     const inputDesc = addItemForm.querySelector('#add-modal-name').value.trim();
     const inputCat = addItemForm.querySelector('#add-modal-cat').value.trim() || "-"; 
-    const inputQty  = addItemForm.querySelector('#add-modal-qty').value || 0
+    const inputQty  = addItemForm.querySelector('#add-modal-qty').value || 0;
     const inputPar = addItemForm.querySelector('#add-modal-par').value || 0; 
-    const inputUOM = addItemForm.querySelector('#add-modal-uom').value.trim() || "-";
-    const inputExp = addItemForm.querySelector('#add-modal-exp').value || null;      // null if no date selected
+    const inputUOM = addItemForm.querySelector('#add-modal-uom').value.trim() || "total";
+    const inputExp = addItemForm.querySelector('#add-modal-exp').value || null;
     const sectionID = parseInt(document.querySelector('#section-head').getAttribute("data-id"));
 
 
-    if (inputDesc && inputQty) {
+    if (inputDesc) {
         //build object
         const addFormObj = {
             name: inputDesc,

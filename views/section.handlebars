@@ -56,7 +56,7 @@
         <div class="modal-header">
 
           {{!-- inject name here when update is clicked --}}
-          <h5 class="modal-title" id="update-modal-label">update [item name]</h5>
+          <h5 class="modal-title" id="update-modal-label">update item</h5>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
   
@@ -67,17 +67,17 @@
           </div> --}}
 
           <div class="form-group">
-            <label for="update-modal-cat" class="col-form-label">category:</label>
+            <label for="update-modal-cat" class="col-form-label">Update category description:</label>
             <input type="text" class="form-control" id="update-modal-cat">
           </div>
 
           <div class="form-group">
-            <label for="update-modal-qty" class="col-form-label">quantity:</label>
+            <label for="update-modal-qty" class="col-form-label">Update quantity:</label>
             <input type="number" min="0" class="form-control" id="update-modal-qty">
           </div>
 
           <div class="form-group">
-            <label for="update-modal-section" class="col-form-label">section:</label>
+            <label for="update-modal-section" class="col-form-label">Update section:</label>
             <select id="update-modal-section" name="update-modal-section">
               {{#each sectionInfo as |section|}}
               {{!-- use ../ to access the other object's properties in order to compare --}}
@@ -92,17 +92,17 @@
           </div>
 
           <div class="form-group">
-            <label for="update-modal-par" class="col-form-label">par level:</label>
-            <input type="number" min="0"class="form-control" id="update-modal-par">
+            <label for="update-modal-par" class="col-form-label">Update par level:</label>
+            <input type="number" min="0" placeholder="(Default: zero)" class="form-control" id="update-modal-par">
           </div>
 
           <div class="form-group">
-            <label for="update-modal-uom" class="col-form-label">uom:</label>
-            <input type="text" placeholder="enter uom" min="0" class="form-control" id="update-modal-uom">
+            <label for="update-modal-uom" class="col-form-label">Update unit of measure:</label>
+            <input type="text" placeholder="(Default: total)" min="0" class="form-control" id="update-modal-uom">
           </div>
 
           <div class="form-group">
-            <label for="update-modal-exp" class="col-form-label">expiration date:</label>
+            <label for="update-modal-exp" class="col-form-label">Update expiration date:</label>
             <input type="date" class="form-control" id="update-modal-exp">
           </div>
 
@@ -120,38 +120,38 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addModalLabel">add new item to {{requestedSection.name}}</h5>
+        <h5 class="modal-title" id="addModalLabel">Add new item to {{requestedSection.name}}</h5>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
 
       <form id="add-item-form" class="modal-body">
           <div class="form-group">
-            <label for="add-modal-name" class="col-form-label">description:</label>
+            <label for="add-modal-name" class="col-form-label">Enter a description:</label>
             <input type="text" class="form-control" id="add-modal-name">
           </div>
 
           <div class="form-group">
-            <label for="add-modal-cat" class="col-form-label">category:</label>
-            <input type="text" class="form-control" id="add-modal-cat">
+            <label for="add-modal-cat" class="col-form-label">Enter a category (optional):</label>
+            <input type="text" class="form-control" placeholder="Enter a category" id="add-modal-cat">
           </div>
 
           <div class="form-group">
-            <label for="add-modal-qty" class="col-form-label">quantity:</label>
-            <input type="number" min="0" class="form-control" id="add-modal-qty">
+            <label for="add-modal-qty" class="col-form-label">Enter a quantity:</label>
+            <input type="number" min="0" placeholder="(Default: zero)" class="form-control" id="add-modal-qty">
           </div>
 
           <div class="form-group">
-            <label for="add-modal-par" class="col-form-label">par level:</label>
-            <input type="number" min="0"class="form-control" id="add-modal-par">
+            <label for="add-modal-par" class="col-form-label">When would you like this item to appear on the shopping list?</label>
+            <input type="number" min="0" placeholder="(Default: when quantity is zero)" class="form-control" id="add-modal-par">
           </div>
 
           <div class="form-group">
-            <label for="add-modal-uom" class="col-form-label">uom:</label>
-            <input type="text" placeholder="enter uom" min="0" class="form-control" id="add-modal-uom">
+            <label for="add-modal-uom" class="col-form-label">Enter a unit of measure (optional):</label>
+            <input type="text" placeholder="(Default: total)" min="0" class="form-control" id="add-modal-uom">
           </div>
 
           <div class="form-group">
-            <label for="add-modal-exp" class="col-form-label">expiration date:</label>
+            <label for="add-modal-exp" class="col-form-label">Enter an expiration date (optional)</label>
             <input type="date" class="form-control" id="add-modal-exp">
           </div>
 
