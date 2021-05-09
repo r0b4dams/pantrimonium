@@ -18,7 +18,12 @@
             {{#each items}}
               {{#if (ifCond quantity '<=' par_level true)}}
           <div style="background-color: #ff9a4a;" class="row rounded my-2 w-100 mx-auto p-1 col-12" id="{{id}}">
-            <h2 class="checkbox"><i class="far fa-square" data-fa-transform="grow-6 down-5"></i></h2><span class = "col-3">{{name}}</span>
+            <h2 class="checkbox">
+              <i class="far fa-square" data-fa-transform="grow-6 down-5"></i>
+            </h2>
+
+            <span class = "col-3 item-name">{{name}}</span>
+
             <span class = "col-3">{{quantity}} of {{par_level}} {{unit_of_measurement}}</span>
             <span class = "col-1 noPrint">{{type}}</span>
             <span class = "col-2 text-right text-nowrap">{{exp_date}}</span>
