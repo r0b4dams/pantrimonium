@@ -10,11 +10,11 @@
       </div>
       <div class="row col-12">
         <div class="rounded mx-3 p-2 mb-3 col-12 item-list"  style="background-color: #ffb202;">
-          <div class="w-100 mx-auto p-1 flex-wrap">
-            <h2>Shopping List</h2>
+          <div class="mx-auto p-1 flex-wrap">
+            <h2 class="col">Shopping List</h2>
             <span class="float-right"><button type="button" class="btn btn-primary btn-sm noPrint" id="add" data-toggle="modal" data-target="#addModal">+Add to List</button></span>
           </div>
-          {{#each items }}
+          {{#each items}}
             {{#each items}}
               {{#if (ifCond quantity '<=' par_level true)}}
           <div style="background-color: #ff9a4a;" class="row rounded my-2 w-100 mx-auto p-1 col-12" id="{{id}}">
