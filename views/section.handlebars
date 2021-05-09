@@ -1,4 +1,4 @@
-<div class="rounded container col-10 p-2 w-100 m-3 mx-auto">
+<div class="container col-10 p-2 w-100 m-3 mx-auto">
   <div class="row">
     <div class="rounded mx-3 p-2 mb-3 btn-block"  style="background-color: #ffb202;">
       <div class="runningLow w-100 mx-auto p-1">
@@ -18,11 +18,11 @@
           <div style="background-color: #ff9a4a;" class="row rounded my-2 runningLow w-100 mx-auto p-1">
 
             <span class = "col-2">{{item.name}}</span>
-            <span class = "col-2">{{item.quantity}} {{unit_of_measurement}}</span>
-            <span class = "col-2">{{item.type}}</span>
-            <span class = "col-2">{{exp_date}}</span>  
+            <span class = "col">{{item.quantity}} {{unit_of_measurement}}</span>
+            <span class = "col">{{item.type}}</span>
+            <span class = "col">{{exp_date}}</span>  
 
-            <span class = "col-3 text-right">
+            <span class = "col text-right">
 
               {{!-- row update button --}}
               <button type="button" class="btn btn-primary btn-sm update-btn" data-id={{id}} data-toggle="modal" data-target="#update-item-modal">Update Item</button>
