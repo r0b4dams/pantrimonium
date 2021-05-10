@@ -6,8 +6,6 @@
 
 - This app allows the user to create an inventory of all food items they have. In the app you can add, view, update, and delete new items. At the same time you can categorize each item and save them in a specific section, such as refrigerator, freezer, or pantry. There is a generated shopping list where items running low or expiring are located and the user can also add, and delete items on that page. 
 
-
-
 ## Table of Contents
 
 - [Usage](#Usage)
@@ -15,6 +13,8 @@
 - [License](#License)
 
 ## Usage
+
+[Click this link to check out our deployed application!](https://pantrimonium.herokuapp.com/)
 
 - The client will be able to sign up and create a user, once logged in they will be presented with their personal sections. The user mobile version is versatile and user friendly on any mobile or tablet.
     ![Once the user gets to the login page they will first have to sign up and create a new user, as well as login with those new credentials](./images/login.png) ![User mobile is shown here.](./images/loginMobile.png)
