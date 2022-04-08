@@ -1,6 +1,6 @@
 [![MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 
-# Project 2 Name: Pantrimonium
+# Pantrimonium
 
 ## Description
 
